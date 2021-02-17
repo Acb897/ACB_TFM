@@ -28,7 +28,8 @@ END
         
             SELECT ?predicate ?object_type
             WHERE {
-                <#{type}> ?predicate ?object . 
+                ?subject a <#{type}>.
+                ?subject ?predicate ?object . 
                 ?object a ?object_type.
             } limit 10
 END
@@ -39,12 +40,14 @@ END
         
             SELECT ?predicate ?subject_type
             WHERE {
-                ?subject ?predicate <#{type}> . 
+                ?object a <#{type}>.
+                ?subject ?predicate ?object . 
                 ?subject a ?subject_type.
             } limit 10
 END
             result = sparql.query(query)
         end
+        
         return result        
     end
 
