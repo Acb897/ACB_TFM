@@ -11,7 +11,6 @@ WHERE {
 END
 
 
-
 sparql = SPARQL::Client.new(endpoint)  # create a SPARQL client
 result = sparql.query(query)  # Execute query
 types_array = Array.new
@@ -32,16 +31,16 @@ types_array.each do |type|
     #puts "Type: #{type}"
     query = <<END
 
-    SELECT ?predicate ?object
+    SELECT ?predicate ?object_type
     WHERE {
         <#{type}> ?predicate ?object . 
+        ?object a ?object_type.
     } limit 10
 END
 
-
-
     result = sparql.query(query)  # Execute query
     result.each do |solution|
-        puts "Predicate: #{solution[:predicate]}, Object: #{solution[:object]}"
+        puts "Predicate: #{solution[:predicate]}, Object: #{solution[:object_type]}"
+
     end
 end    
