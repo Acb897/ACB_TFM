@@ -4,7 +4,7 @@ endpoint = "http://sparql.uniprot.org/sparql"  # what location are we querying?
 
 query = <<END
 
-SELECT ?type                           # note that ?name and ?image becomes the Ruby symbol :name and :image
+SELECT DISTINCT(?type)                           # note that ?name and ?image becomes the Ruby symbol :name and :image
 WHERE {
        ?subject a ?type .
 } limit 10
@@ -25,18 +25,23 @@ result.each do |solution|
     end
 end
 
-puts types_array
+#puts types_array
 
 types_array.each do |type|
+
+    #puts "Type: #{type}"
     query = <<END
 
-    SELECT ?predicate ?subject
+    SELECT ?predicate ?object
     WHERE {
-        #{type} ?predicate ?subject . 
+        <#{type}> ?predicate ?object . 
     } limit 10
-    END
+END
 
 
 
     result = sparql.query(query)  # Execute query
+    result.each do |solution|
+        puts "Predicate: #{solution[:predicate]}, Object: #{solution[:object]}"
+    end
 end    
