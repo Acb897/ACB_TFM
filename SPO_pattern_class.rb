@@ -1,3 +1,15 @@
+=begin
+Questions:
+    - If I try to set the limit of the queries to more than 10, I get an error that says that there were too many connection resets due to Net::ReadTimeout
+    - I'm not sure how to check if the SPO patterns already exist. Is it possible to ask if there is an object with certain concrete attributes (the same Subject,
+      predicate and object)?
+    - In the way that I'm doing the parsing of the triplestore, I can't think of any scenario where a loop or duplication happens, even with inverse relationships.
+      I must be missing something.
+    - I get an error saying that there is an Invalid return in line 63: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:63: Invalid return in class/module body (SyntaxError)
+        return result   
+    - I also get an error saying that there was an unexpected keyword_end in line 114: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:114: syntax error, unexpected keyword_end, expecting end-of-input
+=end
+
 require "sparql/client"
 
 class SPO
@@ -70,8 +82,7 @@ END
         #puts types_array
         
         types_array.each do |type|
-        
-            #This query asks for the types of objects and the predicates that interact with each of the types
+                    #This query asks for the types of objects and the predicates that interact with each of the types
             fsubject_results = SPO.query_endpoint(endpoint_URL, "fixed_subject")
             fsubject_results.each do |solution|
                 if @patterns.include? type
