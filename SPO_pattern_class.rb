@@ -5,9 +5,10 @@ Questions:
       predicate and object)?
     - In the way that I'm doing the parsing of the triplestore, I can't think of any scenario where a loop or duplication happens, even with inverse relationships.
       I must be missing something.
-    - I get an error saying that there is an Invalid return in line 63: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:63: Invalid return in class/module body (SyntaxError)
+    - When the objects of the triples have no type, what should I record in the pattern? The kind of data it is (int, string, float etc)?
+    - I get an error saying that there is an Invalid return in line 65: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:65: Invalid return in class/module body (SyntaxError)
         return result   
-    - I also get an error saying that there was an unexpected keyword_end in line 114: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:114: syntax error, unexpected keyword_end, expecting end-of-input
+    - I also get an error saying that there was an unexpected keyword_end in line 116: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:116: syntax error, unexpected keyword_end, expecting end-of-input
 =end
 
 require "sparql/client"
@@ -36,9 +37,10 @@ END
             result = sparql.query(query)
         
         elsif mode == "fixed_subject"
+            #Recordatorio para poner el OPTIONAL en el ?object_type
             query = <<END
         
-            SELECT ?predicate ?object_type
+            SELECT DISTINCT(?predicate ?object_type)
             WHERE {
                 ?subject a <#{type}>.
                 ?subject ?predicate ?object . 
@@ -50,7 +52,7 @@ END
         elsif mode == "fixed_object"
             query = <<END
         
-            SELECT ?predicate ?subject_type
+            SELECT DISTINCT(?predicate ?subject_type)
             WHERE {
                 ?object a <#{type}>.
                 ?subject ?predicate ?object . 
@@ -85,6 +87,7 @@ END
                     #This query asks for the types of objects and the predicates that interact with each of the types
             fsubject_results = SPO.query_endpoint(endpoint_URL, "fixed_subject")
             fsubject_results.each do |solution|
+                #Recordatorio para poner la comprobacion de si solution tiene un :object o un :object_type, y crear el objeto con lo que tengan
                 if @patterns.include? type
                     @patterns[type] << SPO.new(
                         :SPO_Subject => type,
