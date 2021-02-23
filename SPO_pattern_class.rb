@@ -1,14 +1,35 @@
 =begin
 Questions:
     - If I try to set the limit of the queries to more than 10, I get an error that says that there were too many connection resets due to Net::ReadTimeout
+    
+    yes, I am working with Jerven to solve this.  UniProt sends a redirect for some (expensive) queries, so that they are answered more quickly
+    The ruby client doesn't follow redirects.
+    
     - I'm not sure how to check if the SPO patterns already exist. Is it possible to ask if there is an object with certain concrete attributes (the same Subject,
       predicate and object)?
+
+    i have added my solution to the code
+    
     - In the way that I'm doing the parsing of the triplestore, I can't think of any scenario where a loop or duplication happens, even with inverse relationships.
       I must be missing something.
+
+    You're right!  your approach to parsing the triplestore is a lot smarter than mine :-)
+    
     - When the objects of the triples have no type, what should I record in the pattern? The kind of data it is (int, string, float etc)?
+    
+    yes
+    
     - I get an error saying that there is an Invalid return in line 65: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:65: Invalid return in class/module body (SyntaxError)
-        return result   
+        return result
+        
+    solved
+    
     - I also get an error saying that there was an unexpected keyword_end in line 116: /home/osboxes/Course/ACB_TFM/SPO_pattern_class.rb:116: syntax error, unexpected keyword_end, expecting end-of-input
+    
+    yeah, you had a few syntax errors.
+    
+    The code now works, tested to completion against teh metanetx endpoint
+    
 =end
 
 require "sparql/client"
