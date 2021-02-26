@@ -151,8 +151,8 @@ END
             #This query asks for the types of objects and the predicates that interact with each of the types
             fsubject_results = query_endpoint(endpoint_URL, "fixed_subject", type)
             fsubject_results.each do |solution|
-                next if solution[object_type] =~ /rdf-schema/
-                next if solution[object_type] =~ /owl\#Ontology/
+                next if solution[:object_type] =~ /rdf-schema/
+                next if solution[:object_type] =~ /owl\#Ontology/
                 
                 #Recordatorio para poner la comprobacion de si solution tiene un :object o un :object_type, y crear el objeto con lo que tengan
                 # do a quick lookup to see if we already know this pattern

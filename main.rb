@@ -6,4 +6,6 @@ engine = Engine.new()
 
 first_test = engine.extract_patterns("https://rdf.metanetx.org/sparql")
 
-print first_test
+#print first_test
+
+print first_test["http://swisslipids.org/rdf#HasSourceComponent"]
