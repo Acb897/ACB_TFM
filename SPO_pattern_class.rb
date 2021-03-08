@@ -1,6 +1,11 @@
 =begin
 Questions:
-- If I understand correctly, there should be a SHACL shape     
+- I need some help with the query that asks for the object type. Since it is hard to come across an example of a triple whose object doesn't have a rdf:type, but a
+    datatype (for example xsd:string), I'm not sure how to make the part of the query that asks for the object type optional and also make it ask for the datatype
+    of the object in those cases. My idea on how to handle those cases is to add a new attribute to the SPO class called SPO_ObjDatatype. Then, in the shacl_generator
+    function check if the pattern has a value for SPO_ObjDatatype to create the correct shape.
+- Please, read the comment that is just above the shacl_generation function.
+- Are the SHACL shapes generated in the output_test1.txt document correct?
 =end
 
 require "sparql/client"
@@ -142,19 +147,68 @@ END
         return @patterns          
     end
 
+    
+=begin
+The problem here is that because of the way we ask for the patterns for each type, there are cases like the following;
+
+"http://swisslipids.org/rdf#HasSourceComponent"=>[#<SPO:0x00005607262994f0 @SPO_Subject="http://swisslipids.org/rdf#HasSourceComponent", 
+@SPO_Predicate=#<RDF::URI:0x2b039314cec4 URI:http://www.w3.org/1999/02/22-rdf-syntax-ns#type>, 
+@SPO_Object=#<RDF::URI:0x2b039314cdfc URI:http://www.w3.org/2002/07/owl#Class>>, 
+
+#<SPO:0x00005607262992c0 @SPO_Subject="http://swisslipids.org/rdf#HasSourceComponent", 
+@SPO_Predicate=#<RDF::URI:0x2b039314cce4 URI:http://swisslipids.org/rdf#metabolite>, 
+@SPO_Object=#<RDF::URI:0x2b039314cc08 URI:http://swisslipids.org/rdf#Metabolite>>, 
+
+#<SPO:0x0000560726258f40 @SPO_Subject=#<RDF::URI:0x2b039312c91c URI:http://swisslipids.org/rdf#Metabolite>, 
+@SPO_Predicate=#<RDF::URI:0x2b039312cad4 URI:http://swisslipids.org/rdf#annotation>, @SPO_Object="http://swisslipids.org/rdf#HasSourceComponent">]
+
+Where we have, in the same value corresponding to one key of the hash, patterns that start with different predicates (in this case the 3rd SPO object has 
+http://swisslipids.org/rdf#Metabolite as subject, and the other two have http://swisslipids.org/rdf#HasSourceComponent). This causes some of those patterns
+that don't match the subject of the others to appear multiple times in the SHACL shapes.
+
+I tried to solve this by creating a new patterns hash with all those patterns whose subject doesn't match the others, but I can't get it to work
+=end    
     def shacl_generator(patterns_hash, output_file)
+        
+        new_patterns_hash = Hash.new
         File.open(output_file, "w") {|file|
             patterns_hash.each do |key, value|
+                #puts "Processing #{key}'s shape"
+                shape_intro = "<#{key}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
+                file.write shape_intro
                 value.each do |pattern|
-                    if subject == pattern.SPO_Subject
-                        shape = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
-                    else 
-                        shape = "<#{pattern.SPO_Subject}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{pattern.SPO_Subject}> ;\n\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
-                        subject = pattern.SPO_Subject
+                    
+                    if key == pattern.SPO_Subject
+                        property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
+                        file.write property_text
+                    else
+                        #This is the part I can't get to work. 
+                        puts pattern.SPO_Subject
+                        new_patterns_hash[pattern.SPO_Subject] = pattern
+                        print new_patterns_hash
+                        puts puts
                     end
-                    file.write shape
                 end
             end
+
+            # This repeats the code from the previous part because I was trying to see where the problem could be. Also, wouldn't this be a great opportunity to use
+            # recursiveness?
+
+            # new_patterns_hash.each do |key, value|
+            #     puts "Processing #{key}'s shape"
+            #     shape_intro = "<#{key}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
+            #     file.write shape_intro
+            #     value.each do |pattern|
+            #         puts "\tProcessing #{pattern.SPO_Subject}, #{pattern.SPO_Predicate}, #{pattern.SPO_Object}"
+            #         if key == pattern.SPO_Subject
+            #             property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
+            #             file.write property_text
+            #         else 
+            #             new_patterns_hash[pattern.SPO_Subject] = pattern
+            #         end
+            #     end
+            # end
         }
-    end    
+    end
+        
 end
