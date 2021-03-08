@@ -5,7 +5,7 @@ Questions:
     of the object in those cases. My idea on how to handle those cases is to add a new attribute to the SPO class called SPO_ObjDatatype. Then, in the shacl_generator
     function check if the pattern has a value for SPO_ObjDatatype to create the correct shape.
 - Please, read the comment that is just above the shacl_generation function.
-- Are the SHACL shapes generated in the output_test1.txt document correct?
+- Are the SHACL shapes generated in the output_test.txt document correct?
 =end
 
 require "sparql/client"
