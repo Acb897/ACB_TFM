@@ -83,7 +83,7 @@ class Engine
     
     def query_endpoint(endpoint_URL, mode = "exploratory", type = "")
         abort "must provide a type in any mode other than exploratory" if mode != "exploratory" and type.to_s.empty?
-        sparql = SPARQL::Client.new(endpoint_URL)
+        sparql = SPARQL::Client.new(endpoint_URL, {method: :get})
         if mode == "exploratory"
             #This first query asks for the types of objects inside the triplestore
             query = <<END
