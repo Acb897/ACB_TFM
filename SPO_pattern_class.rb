@@ -187,9 +187,9 @@ The problem here is that because of the way we ask for the patterns for each typ
 @SPO_Predicate=#<RDF::URI:0x2b039312cad4 URI:http://swisslipids.org/rdf#annotation>, 
 @SPO_Object="http://swisslipids.org/rdf#HasSourceComponent">]
 
-Where we have, in the same value corresponding to one key of the hash, patterns that start with different predicates (in this case the 3rd SPO object has 
+Where we have, in the same value correspponding to one key of the hash, patterns that start with different predicates (in this case the 3rd SPO object has 
 http://swisslipids.org/rdf#Metabolite as subject, and the other two have http://swisslipids.org/rdf#HasSourceComponent). This causes some of those patterns
-that don't match the subject of the others to appear multiple times in the SHACL shapes.
+that don't match the subject of the others to apear multiple times in the SHACL shapes.
 
 I tried to solve this by creating a new patterns hash with all those patterns whose subject doesn't match the others, but I can't get it to work
 =end    
@@ -204,21 +204,41 @@ Sorry, I don't understand the question.
         
         new_patterns_hash = Hash.new
         File.open(output_file, "w") {|file|
+            file.write "@prefix sh: <http://www.w3.org/ns/shacl#> .\n\n"
             patterns_hash.each do |key, value|
+                puts "New counter"
+                counter = 0
                 #puts "Processing #{key}'s shape"
                 shape_intro = "<#{key}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
                 file.write shape_intro
                 value.each do |pattern|
-                    
+                    # print value
+                    # puts "Value length: #{value.length().class}"
+                    # puts puts
                     if key == pattern.SPO_Subject
-                        property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
-                        file.write property_text
+                        counter += 1
+                        #puts "Added counter #{counter}"
+                        #puts "Counter: #{counter}, #{counter.class}, value length: #{value.length()}, #{value.length().class}, #{counter == value.length()}"
+                        # if counter == (value.length() - 1)
+                        numero = value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
+                        puts "Counter: #{counter}, NºBuenos: #{numero}"
+                        if counter == value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
+                            final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] .\n"
+                            file.write final_property_text
+                            
+                        else
+                            property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
+                            file.write property_text
+                        end
                     else
-                        #This is the part I can't get to work. 
-                        puts pattern.SPO_Subject
-                        new_patterns_hash[pattern.SPO_Subject] = pattern
-                        print new_patterns_hash
-                        puts puts
+                        # counter += 1
+                        # puts "Malo, Counter: #{counter}, #{counter.class}, value length: #{value.length()}, #{value.length().class}, #{counter == value.length()}"
+                        #puts counter
+                        # #This is the part I can't get to work. 
+                        # puts pattern.SPO_Subject
+                        # new_patterns_hash[pattern.SPO_Subject] = pattern
+                        # print new_patterns_hash
+                        # puts puts
                     end
                 end
             end
