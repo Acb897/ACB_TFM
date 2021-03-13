@@ -201,15 +201,24 @@ Sorry, I don't understand the question.
 =end
 
     def shacl_generator(patterns_hash, output_file)
-        
         new_patterns_hash = Hash.new
         File.open(output_file, "w") {|file|
             file.write "@prefix sh: <http://www.w3.org/ns/shacl#> .\n\n"
             patterns_hash.each do |key, value|
+                value.each do |pattern|
+                    if new_patterns_hash.include? pattern.SPO_Subject.to_s
+                        new_patterns_hash[pattern.SPO_Subject.to_s] << pattern
+                    else 
+                        new_patterns_hash[pattern.SPO_Subject.to_s] = [pattern]
+                    end
+                end
+            end
+            #print new_patterns_hash
+            new_patterns_hash.each do |key, value|
                 puts "New counter"
                 counter = 0
                 #puts "Processing #{key}'s shape"
-                shape_intro = "<#{key}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
+                shape_intro = "<#{key}Shape>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
                 file.write shape_intro
                 value.each do |pattern|
                     # print value
@@ -230,36 +239,36 @@ Sorry, I don't understand the question.
                             property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
                             file.write property_text
                         end
-                    else
-                        # counter += 1
-                        # puts "Malo, Counter: #{counter}, #{counter.class}, value length: #{value.length()}, #{value.length().class}, #{counter == value.length()}"
-                        #puts counter
-                        # #This is the part I can't get to work. 
-                        # puts pattern.SPO_Subject
-                        # new_patterns_hash[pattern.SPO_Subject] = pattern
-                        # print new_patterns_hash
-                        # puts puts
+                    # else
+                    #     # #This is the part I can't get to work. 
+                    #     # puts pattern.SPO_Subject
+                    #     new_patterns_hash[pattern.SPO_Subject] = pattern
+                    #     # print new_patterns_hash
+                    #     # puts puts
                     end
                 end
+                
             end
+            # puts "New patterns hash:"
+            # print new_patterns_hash
 
-            # This repeats the code from the previous part because I was trying to see where the problem could be. Also, wouldn't this be a great opportunity to use
-            # recursiveness?
+            # # This repeats the code from the previous part because I was trying to see where the problem could be. Also, wouldn't this be a great opportunity to use
+            # # recursiveness?
 
-            # new_patterns_hash.each do |key, value|
-            #     puts "Processing #{key}'s shape"
-            #     shape_intro = "<#{key}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
-            #     file.write shape_intro
-            #     value.each do |pattern|
-            #         puts "\tProcessing #{pattern.SPO_Subject}, #{pattern.SPO_Predicate}, #{pattern.SPO_Object}"
-            #         if key == pattern.SPO_Subject
-            #             property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
-            #             file.write property_text
-            #         else 
-            #             new_patterns_hash[pattern.SPO_Subject] = pattern
-            #         end
-            #     end
-            # end
+            # # new_patterns_hash.each do |key, value|
+            # #     puts "Processing #{key}'s shape"
+            # #     shape_intro = "<#{key}_SHAPE>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
+            # #     file.write shape_intro
+            # #     value.each do |pattern|
+            # #         puts "\tProcessing #{pattern.SPO_Subject}, #{pattern.SPO_Predicate}, #{pattern.SPO_Object}"
+            # #         if key == pattern.SPO_Subject
+            # #             property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
+            # #             file.write property_text
+            # #         else 
+            # #             new_patterns_hash[pattern.SPO_Subject] = pattern
+            # #         end
+            # #     end
+            # # end
         }
     end
         

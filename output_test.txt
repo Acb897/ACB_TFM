@@ -1,3 +1,5 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
 <http://swisslipids.org/rdf#DbReference_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#DbReference> ;
@@ -8,7 +10,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#database> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#DirectInteraction_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#DirectInteraction> ;
@@ -31,7 +33,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#EntityName_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#EntityName> ;
@@ -50,7 +52,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#nameType> ;
 		sh:class <http://swisslipids.org/rdf#EntityNameType> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Evidence_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Evidence> ;
@@ -89,7 +91,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#reference> ;
 		sh:class <http://swisslipids.org/rdf#Publication> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#HasActivatedForm_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#HasActivatedForm> ;
@@ -100,7 +102,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#metabolite> ;
 		sh:class <http://swisslipids.org/rdf#Metabolite> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#HasFreeFattyAcid_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#HasFreeFattyAcid> ;
@@ -111,7 +113,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#metabolite> ;
 		sh:class <http://swisslipids.org/rdf#Metabolite> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#HasSourceComponent_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#HasSourceComponent> ;
@@ -122,7 +124,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#metabolite> ;
 		sh:class <http://swisslipids.org/rdf#Metabolite> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#InvolvedIn_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#InvolvedIn> ;
@@ -145,7 +147,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Metabolite_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Metabolite> ;
@@ -172,7 +174,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#isA> ;
 		sh:class <http://swisslipids.org/rdf#Metabolite> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#OccursIn_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#OccursIn> ;
@@ -199,7 +201,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#PhysicalAssociation_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#PhysicalAssociation> ;
@@ -218,7 +220,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Summary_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Summary> ;
@@ -229,7 +231,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Catalyzes_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Catalyzes> ;
@@ -248,7 +250,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://purl.uniprot.org/core/Taxon> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Colocalization_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Colocalization> ;
@@ -263,7 +265,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Decreases_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Decreases> ;
@@ -274,7 +276,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Increases_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Increases> ;
@@ -285,7 +287,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Protein_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Protein> ;
@@ -300,7 +302,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#HasProduct_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#HasProduct> ;
@@ -319,7 +321,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#HasReactant_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#HasReactant> ;
@@ -338,14 +340,14 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Reaction_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Reaction> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Publication_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Publication> ;
@@ -356,7 +358,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#database> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Eco_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Eco_Term> ;
@@ -367,21 +369,21 @@
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Cellosaurus_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Cellosaurus_Term> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#ExperimentalModel_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#ExperimentalModel_Term> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#NCBI_Taxonomy_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
@@ -392,7 +394,7 @@
 	sh:property [
 		sh:path <http://purl.uniprot.org/core/strain> ;
 		sh:class <http://purl.uniprot.org/core/Strain> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#GO_BiologicalProcess_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#GO_BiologicalProcess_Term> ;
@@ -403,7 +405,7 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#childOf> ;
 		sh:class <http://swisslipids.org/rdf#GO_BiologicalProcess_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#GO_CellularComponent_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#GO_CellularComponent_Term> ;
@@ -414,14 +416,14 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#childOf> ;
 		sh:class <http://swisslipids.org/rdf#GO_CellularComponent_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#GO_MolecularFunction_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#GO_MolecularFunction_Term> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#Tissues_Term_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Tissues_Term> ;
@@ -432,42 +434,42 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#childOf> ;
 		sh:class <http://swisslipids.org/rdf#Tissues_Term> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/CPLX_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/CPLX> ;
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/subu> ;
 		sh:class <https://rdf.metanetx.org/schema/PEPT> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Strain_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Strain> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Taxon_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Taxon> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#ClassificationLevel_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#ClassificationLevel> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#ConfidenceLevel_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#ConfidenceLevel> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#CovalentBinding_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#CovalentBinding> ;
@@ -482,49 +484,49 @@
 	sh:property [
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#EntityNameType_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#EntityNameType> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#EvidenceDirection_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#EvidenceDirection> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#ReactionDirection_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#ReactionDirection> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://swisslipids.org/rdf#TransportLocation_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#TransportLocation> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/CATA_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/CATA> ;
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/pept> ;
 		sh:class <https://rdf.metanetx.org/schema/PEPT> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/GPR_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/GPR> ;
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/reac> ;
 		sh:class <https://rdf.metanetx.org/schema/REAC> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/PART_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/PART> ;
@@ -535,7 +537,7 @@
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/comp> ;
 		sh:class <https://rdf.metanetx.org/schema/COMP> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/CHEM_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/CHEM> ;
@@ -550,7 +552,7 @@
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/chemRefer> ;
 		sh:class <https://rdf.metanetx.org/schema/CHEM> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/COMP_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/COMP> ;
@@ -565,14 +567,14 @@
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/compRefer> ;
 		sh:class <https://rdf.metanetx.org/schema/COMP> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/MNET_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/MNET> ;
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/taxid> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/PEPT_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/PEPT> ;
@@ -587,7 +589,7 @@
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/peptSource> ;
 		sh:class <http://swisslipids.org/rdf#DbReference> ;
-	] ;
+	] .
 <https://rdf.metanetx.org/schema/REAC_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <https://rdf.metanetx.org/schema/REAC> ;
@@ -606,46 +608,46 @@
 	sh:property [
 		sh:path <https://rdf.metanetx.org/schema/reacRefer> ;
 		sh:class <http://swisslipids.org/rdf#DbReference> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Mass_Measurement_Method_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Mass_Measurement_Method> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Organelle_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Organelle> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Protein_Existence_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Protein_Existence> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Rank_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Rank> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Status_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Status> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
 <http://purl.uniprot.org/core/Structure_Determination_Method_SHAPE>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.uniprot.org/core/Structure_Determination_Method> ;
 	sh:property [
 		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
 		sh:class <http://www.w3.org/2002/07/owl#Class> ;
-	] ;
+	] .
