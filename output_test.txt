@@ -148,7 +148,7 @@
 		sh:path <http://swisslipids.org/rdf#taxon> ;
 		sh:class <http://swisslipids.org/rdf#NCBI_Taxonomy_Term> ;
 	] .
-<http://swisslipids.org/rdf#Metabolite_SHAPE>
+< >
 	a sh:NodeShape ;
 	sh:targetClass <http://swisslipids.org/rdf#Metabolite> ;
 	sh:property [
