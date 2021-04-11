@@ -114,9 +114,7 @@ END
                 types_array << solution[:type].to_s
             end
         end
-        
-        puts types_array
-        
+                
         types_array.each do |type|
                     
             #This query asks for the types of objects and the predicates that interact with each of the types
@@ -125,7 +123,6 @@ END
                 next if solution[:object_type] =~ /rdf-schema/
                 next if solution[:object_type] =~ /owl\#Ontology/
                 
-                #Recordatorio para poner la comprobacion de si solution tiene un :object o un :object_type, y crear el objeto con lo que tengan
                 # do a quick lookup to see if we already know this pattern
                 next if in_database?(type,solution[:predicate],solution[:object_type]) # this will add it to teh database if it is not known
                 add_triple_pattern(type, type, solution[:predicate], solution[:object_type])
@@ -135,7 +132,6 @@ END
             fobject_results.each do |solution|
                 # do a quick lookup to see if we already know this pattern
                 next if in_database?(solution[:subject_type],solution[:predicate],type) # this will add it to teh database if it is not known
-                #falta comprobacion de que no tenga ya ese pattern
                 add_triple_pattern(type, solution[:subject_type],solution[:predicate], type)
             end
         end
@@ -157,7 +153,6 @@ END
             end
             #print new_patterns_hash
             new_patterns_hash.each do |key, value|
-                puts "New counter"
                 counter = 0
                 puts "Processing #{key}'s shape"
                 shape_intro = "<#{key}Shape>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
