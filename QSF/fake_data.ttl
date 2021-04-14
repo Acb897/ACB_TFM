@@ -1,0 +1,3 @@
+_:ABC a <http://swisslipids.org/rdf#Proteine>. 
+_:ABC http://swisslipids.org/rdf#taxon _:123. 
+_:123 a <http://swisslipids.org/rdf#NCBI_Taxonomy_Term>
