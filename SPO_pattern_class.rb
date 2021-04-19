@@ -9,11 +9,36 @@ query expansion.
 require "sparql/client"
 require "digest"
 
+# == SPO
+#
+# This class stores the Subject, Predicate and Object (SPO) of any RDF triple data.
+#
+# == Summary
+# This class stores the components of triples.
+#
 class SPO
+
+    # Get/Set the Subject of the triple.
+    # @!attribute [rw]
+    # @return [String] The Subject.
     attr_accessor :SPO_Subject
+
+    # Get/Set the Predicate of the triple.
+    # @!attribute [rw]
+    # @return [String] The Predicate.
     attr_accessor :SPO_Predicate
+
+    # Get/Set the Object of the triple.
+    # @!attribute [rw]
+    # @return [String] The Object.
     attr_accessor :SPO_Object
 
+    # Create a new instance of SPO pattern.
+    #
+    # @param SPO_Subject [String] the complete URI of the Subject of the SPO pattern.
+    # @param SPO_Predicate [String] the complete URI of the Predicate of the SPO pattern.
+    # @param SPO_Object [String] the complete URI of the Object of the SPO pattern.
+    # @return [SPO] an instance of SPO.
     def initialize(params = {})
         @SPO_Subject = params.fetch(:SPO_Subject, "")
         @SPO_Predicate = params.fetch(:SPO_Predicate, "")
@@ -21,14 +46,42 @@ class SPO
     end
 end
 
+# == Engine
+#
+# This class handles all the endpoint indexing operations.
+#
+# == Summary
+#
+# Class that handles the indexing.
+#
 class Engine
+
+    # Get/Set the hash of Subject-Predicate-Object (SPO) patterns.
+    # @!attribute [rw]
+    # @return [Hash] the patterns hash.
     attr_accessor :hashed_patterns
+
+    # Get/Set the Array of SPO patterns.
+    # @!attribute [rw]
+    # @return [Array] the patterns array.
     attr_accessor :patterns
 
+    # Create a new instance of Engine.
+    #
+    # @param hashed_patterns [Hash] the hash of SPO patterns.
+    # @param patterns [Array] the array of SPO patterns.
+    # @return [Engine] an instance of Engine.
     def initialize(params = {})
         @hashed_patterns = []
         @patterns = []
     end
+
+    # Check whether or not a triple has already been added to the SPO patterns hash. 
+    #
+    # @s [] the Subject of the triple.
+    # @p [] the Predicate of the triple.
+    # @o [] the Object of the triple.
+    # @return [Boolean] True if the pattern already exists in the database and False if it does not.
     def in_database?(s,p,o)
         pattern_digest = Digest::SHA2.hexdigest s.to_s+p.to_s+o.to_s
         if hashed_patterns.include? pattern_digest
@@ -38,7 +91,14 @@ class Engine
             return false
         end
     end
-        
+    
+    # Adds the SPO pattern to the database as an instance of the SPO class.
+    #
+    # @type [String] the rdf:type of the Subject.
+    # @s [] the Subject of the triple.
+    # @p [] the Predicate of the triple.
+    # @o [] the Object of the triple.
+    # @return [SPO] an instance of SPO.
     def add_triple_pattern(type, s,p,o)
         if @patterns.include? type
             @patterns[type] << SPO.new(
@@ -55,6 +115,10 @@ class Engine
         end
     end
     
+    # Queries an endpoint to get information for its indexing.
+    #
+    # @endpoint_URL [String] the URL of the SPARQL endpoint to be queried. 
+    # @mode [String] There are three modes: exploratory
     def query_endpoint(endpoint_URL, mode = "exploratory", type = "")
         abort "must provide a type in any mode other than exploratory" if mode != "exploratory" and type.to_s.empty?
         sparql = SPARQL::Client.new(endpoint_URL, {method: :get})
