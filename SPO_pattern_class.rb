@@ -33,7 +33,7 @@ class SPO
     # @return [String] The Object.
     attr_accessor :SPO_Object
 
-    # Create a new instance of SPO pattern.
+    # Creates a new instance of SPO pattern.
     #
     # @param SPO_Subject [String] the complete URI of the Subject of the SPO pattern.
     # @param SPO_Predicate [String] the complete URI of the Predicate of the SPO pattern.
@@ -66,7 +66,7 @@ class Engine
     # @return [Array] the patterns array.
     attr_accessor :patterns
 
-    # Create a new instance of Engine.
+    # Creates a new instance of Engine.
     #
     # @param hashed_patterns [Hash] the hash of SPO patterns.
     # @param patterns [Array] the array of SPO patterns.
@@ -76,7 +76,7 @@ class Engine
         @patterns = []
     end
 
-    # Check whether or not a triple has already been added to the SPO patterns hash. 
+    # Checks whether or not a triple has already been added to the SPO patterns hash. 
     #
     # @s [] the Subject of the triple.
     # @p [] the Predicate of the triple.
@@ -118,7 +118,14 @@ class Engine
     # Queries an endpoint to get information for its indexing.
     #
     # @endpoint_URL [String] the URL of the SPARQL endpoint to be queried. 
-    # @mode [String] There are three modes: exploratory
+    # @mode [String] There are three modes:
+    #
+    # * exploratory: queries the endpoint to get the rdf:types of all typed subjects inside of it.
+    # * fixed_subject: given a subject type (rdf:type), queries the endpoint to get all the object types linked to it type and their corresponding predicates.
+    # * fixed_object: given an object type, queries the endpoint to get all the subject types linked to it and their corresponding predicates.
+    #
+    # @type [String] The rdf:type of the subject or object for the fixed_subject and fixed_object modes.
+    # @return [result] The result of the query.
     def query_endpoint(endpoint_URL, mode = "exploratory", type = "")
         abort "must provide a type in any mode other than exploratory" if mode != "exploratory" and type.to_s.empty?
         sparql = SPARQL::Client.new(endpoint_URL, {method: :get})
@@ -162,6 +169,11 @@ END
         return result        
     end
 
+
+    # Uses the query_endpoint method to get all the SPO patterns present in an endpoint, creating an index.
+    #
+    # @endpoint_URL [String] the URL of the SPARQL endpoint to be indexed.
+    # @return [patterns] A hash containing all the SPO patterns as SPO instances.
     def extract_patterns(endpoint_URL)
         @patterns = Hash.new
         types_array = Array.new
@@ -202,6 +214,11 @@ END
         return @patterns          
     end
 
+        #Generates SHACL shapes corresponding to all the patterns from an endpoint and writes them to a file in turtle format.
+        #
+        # @patterns_hash [Hash] The hash containing all the triple patterns from an endpoint as instances of SPO.
+        # @output_file [String] The name of the output file that will contain all the SHACL shapes. It is recommended to use .ttl as its extension.
+        # @return [File] A file containing the SHACL shapes corresponding to all the SPO patterns given as input.
         def shacl_generator(patterns_hash, output_file)
         new_patterns_hash = Hash.new
         File.open(output_file, "w") {|file|
@@ -234,8 +251,6 @@ END
                                 final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] .\n"
                                 file.write final_property_text
                             end
-                            
-                            
                         else
                             if pattern.SPO_Object.nil?
 
@@ -247,10 +262,8 @@ END
                             end
                         end
                     end
-                end
-                
+                end 
             end
         }
     end
-        
 end
