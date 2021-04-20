@@ -78,9 +78,9 @@ class Engine
 
     # Checks whether or not a triple has already been added to the SPO patterns hash. 
     #
-    # @s [] the Subject of the triple.
-    # @p [] the Predicate of the triple.
-    # @o [] the Object of the triple.
+    # @param s [] the Subject of the triple.
+    # @param p [] the Predicate of the triple.
+    # @param o [] the Object of the triple.
     # @return [Boolean] True if the pattern already exists in the database and False if it does not.
     def in_database?(s,p,o)
         pattern_digest = Digest::SHA2.hexdigest s.to_s+p.to_s+o.to_s
@@ -95,9 +95,9 @@ class Engine
     # Adds the SPO pattern to the database as an instance of the SPO class.
     #
     # @type [String] the rdf:type of the Subject.
-    # @s [] the Subject of the triple.
-    # @p [] the Predicate of the triple.
-    # @o [] the Object of the triple.
+    # @param s [] the Subject of the triple.
+    # @param p [] the Predicate of the triple.
+    # @param o [] the Object of the triple.
     # @return [SPO] an instance of SPO.
     def add_triple_pattern(type, s,p,o)
         if @patterns.include? type
@@ -117,14 +117,13 @@ class Engine
     
     # Queries an endpoint to get information for its indexing.
     #
-    # @endpoint_URL [String] the URL of the SPARQL endpoint to be queried. 
-    # @mode [String] There are three modes:
+    # @param endpoint_URL [String] the URL of the SPARQL endpoint to be queried. 
+    # @param mode [String] There are three modes:
     #
     # * exploratory: queries the endpoint to get the rdf:types of all typed subjects inside of it.
     # * fixed_subject: given a subject type (rdf:type), queries the endpoint to get all the object types linked to it type and their corresponding predicates.
     # * fixed_object: given an object type, queries the endpoint to get all the subject types linked to it and their corresponding predicates.
-    #
-    # @type [String] The rdf:type of the subject or object for the fixed_subject and fixed_object modes.
+    # @param type [String] The rdf:type of the subject or object for the fixed_subject and fixed_object modes.
     # @return [result] The result of the query.
     def query_endpoint(endpoint_URL, mode = "exploratory", type = "")
         abort "must provide a type in any mode other than exploratory" if mode != "exploratory" and type.to_s.empty?
@@ -172,7 +171,7 @@ END
 
     # Uses the query_endpoint method to get all the SPO patterns present in an endpoint, creating an index.
     #
-    # @endpoint_URL [String] the URL of the SPARQL endpoint to be indexed.
+    # @param endpoint_URL [String] the URL of the SPARQL endpoint to be indexed.
     # @return [patterns] A hash containing all the SPO patterns as SPO instances.
     def extract_patterns(endpoint_URL)
         @patterns = Hash.new
@@ -216,8 +215,8 @@ END
 
         #Generates SHACL shapes corresponding to all the patterns from an endpoint and writes them to a file in turtle format.
         #
-        # @patterns_hash [Hash] The hash containing all the triple patterns from an endpoint as instances of SPO.
-        # @output_file [String] The name of the output file that will contain all the SHACL shapes. It is recommended to use .ttl as its extension.
+        # @param patterns_hash [Hash] The hash containing all the triple patterns from an endpoint as instances of SPO.
+        # @param output_file [String] The name of the output file that will contain all the SHACL shapes. It is recommended to use .ttl as its extension.
         # @return [File] A file containing the SHACL shapes corresponding to all the SPO patterns given as input.
         def shacl_generator(patterns_hash, output_file)
         new_patterns_hash = Hash.new
