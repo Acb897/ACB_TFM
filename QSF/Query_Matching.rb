@@ -21,7 +21,7 @@ def fake_data_generator(subject_type, predicate, object_type, output_document)
     return data
 end
 
-# Uses the SCHACL and linkeddata gems to validate the fake data against a database of SHACL shapes.
+# Uses the SHACL and linkeddata gems to validate the fake data against a database of SHACL shapes.
 #
 # @param rdf_graph [String] the name of the document that contains the mock RDF data.
 # @param shacl_document [String] the name of the document with the SHACL shapes.
