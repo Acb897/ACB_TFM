@@ -1,0 +1,243 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<https://rdf.metanetx.org/schema/REACShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/REAC> ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacInMNXref> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/classification> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/isBalanced> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/left> ;
+		sh:class <https://rdf.metanetx.org/schema/PART> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacRefer> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacSource> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/right> ;
+		sh:class <https://rdf.metanetx.org/schema/PART> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/mnxr> ;
+		sh:class <https://rdf.metanetx.org/schema/REAC> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacReplacedBy> ;
+		sh:class <https://rdf.metanetx.org/schema/REAC> ;
+	] .
+<https://rdf.metanetx.org/schema/GPRShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/GPR> ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reac> ;
+		sh:class <https://rdf.metanetx.org/schema/REAC> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/cata> ;
+		sh:class <https://rdf.metanetx.org/schema/CATA> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] .
+<https://rdf.metanetx.org/schema/CHEMShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/CHEM> ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemInMNXref> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemSource> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemXref> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/mass> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemRefer> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/smiles> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/inchikey> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemReplacedBy> ;
+		sh:class <https://rdf.metanetx.org/schema/CHEM> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/hasIsomericChild> ;
+		sh:class <https://rdf.metanetx.org/schema/CHEM> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemSource> ;
+		sh:class <https://rdf.metanetx.org/schema/CHEM> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemRefer> ;
+		sh:class <https://rdf.metanetx.org/schema/CHEM> ;
+	] .
+<https://rdf.metanetx.org/schema/PARTShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/PART> ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chem> ;
+		sh:class <https://rdf.metanetx.org/schema/CHEM> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/comp> ;
+		sh:class <https://rdf.metanetx.org/schema/COMP> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/coef> ;
+	] .
+<https://rdf.metanetx.org/schema/COMPShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/COMP> ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compInMNXref> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compRefer> ;
+		sh:class <https://rdf.metanetx.org/schema/COMP> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compSource> ;
+		sh:class <https://rdf.metanetx.org/schema/COMP> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compRefer> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compSource> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compXref> ;
+		sh:class <https://rdf.metanetx.org/schema/COMP> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compXref> ;
+	] .
+<https://rdf.metanetx.org/schema/MNETShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/MNET> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/canGrow> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/chemCount> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/compCount> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/default_LB> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/default_UB> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/gpr> ;
+		sh:class <https://rdf.metanetx.org/schema/GPR> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/lineage> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/organism> ;
+	] .
+<https://rdf.metanetx.org/schema/PEPTShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/PEPT> ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/geneName> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/peptXref> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/peptRefer> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/peptSource> ;
+	] .
+<https://rdf.metanetx.org/schema/CATAShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/CATA> ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/pept> ;
+		sh:class <https://rdf.metanetx.org/schema/PEPT> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/cplx> ;
+		sh:class <https://rdf.metanetx.org/schema/CPLX> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/dir> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/lb> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/ub> ;
+	] .
+<https://rdf.metanetx.org/schema/CPLXShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/CPLX> ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/subu> ;
+		sh:class <https://rdf.metanetx.org/schema/PEPT> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] .
