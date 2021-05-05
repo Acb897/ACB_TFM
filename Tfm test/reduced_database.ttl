@@ -1,0 +1,34 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<https://rdf.metanetx.org/schema/REACShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://rdf.metanetx.org/schema/REAC> ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacXref> ;
+		sh:class <http://swisslipids.org/rdf#DbReference> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/left> ;
+		sh:class <http://swisslipids.org/rdf#Part> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/right> ;
+		sh:class <https://rdf.metanetx.org/schema/PART> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/mnxr> ;
+		sh:class <https://rdf.metanetx.org/schema/REAC> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacReplacedBy> ;
+		sh:class <https://rdf.metanetx.org/schema/REAC> ;
+	] ;
+	sh:property [
+		sh:path <https://rdf.metanetx.org/schema/reacSource> ;
+	] .
