@@ -1,5 +1,3 @@
-#Basically the question here is that I don't understand why some SPOs conform and others don't, and the reason for some of the different outputs I get. I think 
-#that the main problem is whatever I did wrong that is causing the "message: "is of class http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" and message: "is not of class http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
 require "./Query_Matching.rb"
 
 #If I do the same I did in the first example, but with a database that only contains the Protein shape from swisslipids, I get different results!
