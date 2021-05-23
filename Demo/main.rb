@@ -3,10 +3,9 @@ require "./Query_Matching_class.rb"
 
 engine = Engine.new()
 
-endpoint = ["https://rdf.metanetx.org/sparql"]
+endpoint = ["https://rdf.metanetx.org/sparql", "https://sparql.proconsortium.org/virtuoso/sparql"]
 
 rdf_index = engine.extract_patterns(endpoint)
-
 shacl_index_gen = engine.shacl_generator(rdf_index, "index.txt", "create")
 
 

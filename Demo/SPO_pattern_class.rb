@@ -231,9 +231,10 @@ END
         else 
             abort "The mode should be 'create' or 'append'"
         end
-        patterns_hash.each do |url, patterns|
-            new_patterns_hash = Hash.new
-            File.open(output_file, file_mode) {|file|
+        File.open(output_file, file_mode) {|file|
+            patterns_hash.each do |url, patterns|
+                p url
+                new_patterns_hash = Hash.new
                 file.write ">#{url}\n\n"
                 patterns.each do |key, value|
                     value.each do |pattern|
@@ -275,7 +276,7 @@ END
                         end
                     end 
                 end
-            }
-        end
+            end
+        } 
     end
 end

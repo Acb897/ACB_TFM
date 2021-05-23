@@ -245,3 +245,467 @@
 	sh:property [
 		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
 	] .
+>https://sparql.proconsortium.org/virtuoso/sparql
+
+<http://purl.org/goodrelations/v1#BusinessEntityShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#BusinessEntity> ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#offers> ;
+		sh:class <http://purl.org/goodrelations/v1#Offering> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2002/07/owl#equivalentClass> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2002/07/owl#sameAs> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#legalName> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2001/vcard-rdf/3.0#ADR> ;
+	] ;
+	sh:property [
+		sh:path <http://xmlns.com/foaf/0.1/homepage> ;
+	] ;
+	sh:property [
+		sh:path <http://xmlns.com/foaf/0.1/logo> ;
+	] .
+<http://www.w3.org/2002/07/owl#OntologyShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/2002/07/owl#Ontology> ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#BusinessEntity> ;
+		sh:class <http://purl.org/goodrelations/v1#BusinessEntity> ;
+	] .
+<http://purl.org/goodrelations/v1#OfferingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#Offering> ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#availableAtOrFrom> ;
+		sh:class <http://purl.org/goodrelations/v1#LocationOfSalesOrServiceProvisioning> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#includes> ;
+		sh:class <http://purl.org/goodrelations/v1#ActualProductOrServicesInstance> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#includes> ;
+		sh:class <http://purl.org/goodrelations/v1#ProductOrServiceSomeInstancePlaceholder> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#hasPriceSpecification> ;
+		sh:class <http://purl.org/goodrelations/v1#PriceSpecification> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#includesObject> ;
+		sh:class <http://purl.org/goodrelations/v1#TypeAndQuantityNode> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] .
+<http://purl.org/goodrelations/v1#LocationOfSalesOrServiceProvisioningShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#LocationOfSalesOrServiceProvisioning> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2001/vcard-rdf/3.0#ADR> ;
+	] .
+<http://purl.org/goodrelations/v1#ActualProductOrServicesInstanceShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#ActualProductOrServicesInstance> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#subClassOf> ;
+	] .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#PropertyShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#domain> ;
+		sh:class <http://purl.org/goodrelations/v1#ActualProductOrServicesInstance> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#range> ;
+		sh:class <http://purl.org/goodrelations/v1#ProductOrServiceSomeInstancePlaceholder> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#domain> ;
+		sh:class <http://purl.org/goodrelations/v1#ProductOrServiceSomeInstancePlaceholder> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#domain> ;
+		sh:class <http://purl.org/goodrelations/v1#PriceSpecification> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#range> ;
+		sh:class <http://purl.org/goodrelations/v1#PriceSpecification> ;
+	] .
+<http://purl.org/goodrelations/v1#ProductOrServiceSomeInstancePlaceholderShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#ProductOrServiceSomeInstancePlaceholder> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#subClassOf> ;
+	] .
+<http://purl.org/goodrelations/v1#PriceSpecificationShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#PriceSpecification> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#subClassOf> ;
+	] .
+<http://purl.org/goodrelations/v1#TypeAndQuantityNodeShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#TypeAndQuantityNode> ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#typeOfGood> ;
+		sh:class <http://purl.org/goodrelations/v1#ProductOrServicesSomeInstancesPlaceholder> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#typeOfGood> ;
+		sh:class <http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AKJ315005-tax> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#typeOfGood> ;
+		sh:class <http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AAB316003-tax> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#typeOfGood> ;
+		sh:class <http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AKE112003-tax> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#amountOfThisGood> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> ;
+	] .
+<http://purl.org/goodrelations/v1#ProductOrServicesSomeInstancesPlaceholderShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#ProductOrServicesSomeInstancesPlaceholder> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+	] .
+<http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AKJ315005-taxShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AKJ315005-tax> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] .
+<http://purl.org/goodrelations/v1#ManufacturerShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/goodrelations/v1#Manufacturer> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2002/07/owl#equivalentClass> ;
+	] .
+<http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AAB316003-taxShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AAB316003-tax> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] .
+<http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AKE112003-taxShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.ebusiness-unibw.org/ontologies/eclass/5.1.4/#C_AKE112003-tax> ;
+	sh:property [
+		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+	] .
+<http://purl.org/dc/dcmitype/DatasetShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/dcmitype/Dataset> ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#linkPredicate> ;
+		sh:class <http://www.w3.org/2002/07/owl#AnnotationProperty> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#linkPredicate> ;
+		sh:class <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/hasPart> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] .
+<http://www.w3.org/ns/dcat#DistributionShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/dcat#Distribution> ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#Linkset> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] .
+<http://rdfs.org/ns/void#DatasetShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://rdfs.org/ns/void#Dataset> ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#linkPredicate> ;
+		sh:class <http://www.w3.org/2002/07/owl#AnnotationProperty> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#linkPredicate> ;
+		sh:class <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] .
+<http://rdfs.org/ns/void#LinksetShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://rdfs.org/ns/void#Linkset> ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#linkPredicate> ;
+		sh:class <http://www.w3.org/2002/07/owl#AnnotationProperty> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#linkPredicate> ;
+		sh:class <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#target> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://rdfs.org/ns/void#subjectsTarget> ;
+		sh:class <http://rdfs.org/ns/void#Dataset> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://www.w3.org/ns/dcat#Distribution> ;
+	] ;
+	sh:property [
+		sh:path <http://purl.org/dc/terms/isVersionOf> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] ;
+	sh:property [
+		sh:path <http://www.w3.org/ns/dcat#distribution> ;
+		sh:class <http://rdfs.org/ns/void#Linkset> ;
+	] .
