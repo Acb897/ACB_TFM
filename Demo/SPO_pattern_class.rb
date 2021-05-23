@@ -218,56 +218,64 @@ END
         return @endpoint_patterns        
     end
 
-        #Generates SHACL shapes corresponding to all the patterns from an endpoint and writes them to a file in turtle format.
-        #
-        # @param patterns_hash [Hash] The hash containing all the triple patterns from an endpoint as instances of SPO.
-        # @param output_file [String] The name of the output file that will contain all the SHACL shapes. It is recommended to use .ttl as its extension.
-        # @return [File] A file containing the SHACL shapes corresponding to all the SPO patterns given as input.
-        def shacl_generator(patterns_hash, output_file)
-        new_patterns_hash = Hash.new
-        File.open(output_file, "w") {|file|
-            file.write "@prefix sh: <http://www.w3.org/ns/shacl#> .\n\n"
-            patterns_hash.each do |key, value|
-                value.each do |pattern|
-                    if new_patterns_hash.include? pattern.SPO_Subject.to_s
-                        new_patterns_hash[pattern.SPO_Subject.to_s] << pattern
-                    else 
-                        new_patterns_hash[pattern.SPO_Subject.to_s] = [pattern]
-                    end
-                end
-            end
-            #print new_patterns_hash
-            new_patterns_hash.each do |key, value|
-                counter = 0
-                puts "Processing #{key}'s shape"
-                shape_intro = "<#{key}Shape>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
-                file.write shape_intro
-                value.each do |pattern|
-                    if key == pattern.SPO_Subject
-                        counter += 1
-                        numero = value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
-                        if counter == value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
-                            if pattern.SPO_Object.nil?
-
-                                final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t] .\n"
-                                file.write final_property_text
-                            else
-                                final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] .\n"
-                                file.write final_property_text
-                            end
-                        else
-                            if pattern.SPO_Object.nil?
-
-                                property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t] ;\n"
-                                file.write property_text
-                            else
-                                property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
-                                file.write property_text
-                            end
+    #Generates SHACL shapes corresponding to all the patterns from an endpoint and writes them to a file in turtle format.
+    #
+    # @param patterns_hash [Hash] The hash containing all the triple patterns from an endpoint as instances of SPO.
+    # @param output_file [String] The name of the output file that will contain all the SHACL shapes. It is recommended to use .ttl as its extension.
+    # @return [File] A file containing the SHACL shapes corresponding to all the SPO patterns given as input.
+    def shacl_generator(patterns_hash, output_file, mode)
+        if mode.downcase == "create"
+            file_mode = "w"
+        elsif mode.downcase == "append"
+            file_mode = "a"
+        else 
+            abort "The mode should be 'create' or 'append'"
+        end
+        patterns_hash.each do |url, patterns|
+            new_patterns_hash = Hash.new
+            File.open(output_file, file_mode) {|file|
+                file.write ">#{url}\n\n"
+                patterns.each do |key, value|
+                    value.each do |pattern|
+                        if new_patterns_hash.include? pattern.SPO_Subject.to_s
+                            new_patterns_hash[pattern.SPO_Subject.to_s] << pattern
+                        else 
+                            new_patterns_hash[pattern.SPO_Subject.to_s] = [pattern]
                         end
                     end
-                end 
-            end
-        }
+                end
+                new_patterns_hash.each do |key, value|
+                    counter = 0
+                    puts "Processing #{key}'s shape"
+                    shape_intro = "<#{key}Shape>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
+                    file.write shape_intro
+                    value.each do |pattern|
+                        if key == pattern.SPO_Subject
+                            counter += 1
+                            numero = value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
+                            if counter == value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
+                                if pattern.SPO_Object.nil?
+
+                                    final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t] .\n"
+                                    file.write final_property_text
+                                else
+                                    final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] .\n"
+                                    file.write final_property_text
+                                end
+                            else
+                                if pattern.SPO_Object.nil?
+
+                                    property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t] ;\n"
+                                    file.write property_text
+                                else
+                                    property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
+                                    file.write property_text
+                                end
+                            end
+                        end
+                    end 
+                end
+            }
+        end
     end
 end

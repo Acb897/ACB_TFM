@@ -1,4 +1,4 @@
-@prefix sh: <http://www.w3.org/ns/shacl#> .
+>https://rdf.metanetx.org/sparql
 
 <https://rdf.metanetx.org/schema/REACShape>
 	a sh:NodeShape ;
