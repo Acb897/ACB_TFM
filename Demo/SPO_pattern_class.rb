@@ -173,44 +173,49 @@ END
     #
     # @param endpoint_URL [String] the URL of the SPARQL endpoint to be indexed.
     # @return [patterns] A hash containing all the SPO patterns as SPO instances.
-    def extract_patterns(endpoint_URL)
-        @patterns = Hash.new
-        types_array = Array.new
-        exploration_results = query_endpoint(endpoint_URL, "exploratory")
-        $stderr.puts exploration_results.length.to_s + " types found"
-        #The types are stored in an array so that they can be later explored individually in order
-        exploration_results.each do |solution|
-            next if solution[:type].to_s =~ /openlink/
-            next if solution[:type].to_s =~ /w3\.org/
-            
-            if types_array.include? solution[:type].to_s  # necessary because the ruby object wont be the same object, even if the content is the same
-                next
-            else
-                types_array << solution[:type].to_s
-            end
-        end
+    def extract_patterns(endpoint_URLs_array)
+        abort "the input must be an array of endpoint URLs" unless endpoint_URLs_array.is_a?(Array)
+        @endpoint_patterns = Hash.new
+        endpoint_URLs_array.each do |endpoint_URL|
+            @patterns = Hash.new
+            types_array = Array.new
+            exploration_results = query_endpoint(endpoint_URL, "exploratory")
+            $stderr.puts exploration_results.length.to_s + " types found"
+            #The types are stored in an array so that they can be later explored individually in order
+            exploration_results.each do |solution|
+                next if solution[:type].to_s =~ /openlink/
+                next if solution[:type].to_s =~ /w3\.org/
                 
-        types_array.each do |type|
+                if types_array.include? solution[:type].to_s  # necessary because the ruby object wont be the same object, even if the content is the same
+                    next
+                else
+                    types_array << solution[:type].to_s
+                end
+            end
                     
-            #This query asks for the types of objects and the predicates that interact with each of the types
-            fsubject_results = query_endpoint(endpoint_URL, "fixed_subject", type)
-            fsubject_results.each do |solution|
-                next if solution[:object_type] =~ /rdf-schema/
-                next if solution[:object_type] =~ /owl\#Ontology/
-                
-                # do a quick lookup to see if we already know this pattern
-                next if in_database?(type,solution[:predicate],solution[:object_type]) # this will add it to teh database if it is not known
-                add_triple_pattern(type, type, solution[:predicate], solution[:object_type])
-                
+            types_array.each do |type|
+                        
+                #This query asks for the types of objects and the predicates that interact with each of the types
+                fsubject_results = query_endpoint(endpoint_URL, "fixed_subject", type)
+                fsubject_results.each do |solution|
+                    next if solution[:object_type] =~ /rdf-schema/
+                    next if solution[:object_type] =~ /owl\#Ontology/
+                    
+                    # do a quick lookup to see if we already know this pattern
+                    next if in_database?(type,solution[:predicate],solution[:object_type]) # this will add it to teh database if it is not known
+                    add_triple_pattern(type, type, solution[:predicate], solution[:object_type])
+                    
+                end
+                fobject_results = query_endpoint(endpoint_URL, "fixed_object", type)
+                fobject_results.each do |solution|
+                    # do a quick lookup to see if we already know this pattern
+                    next if in_database?(solution[:subject_type],solution[:predicate],type) # this will add it to teh database if it is not known
+                    add_triple_pattern(type, solution[:subject_type],solution[:predicate], type)
+                end
             end
-            fobject_results = query_endpoint(endpoint_URL, "fixed_object", type)
-            fobject_results.each do |solution|
-                # do a quick lookup to see if we already know this pattern
-                next if in_database?(solution[:subject_type],solution[:predicate],type) # this will add it to teh database if it is not known
-                add_triple_pattern(type, solution[:subject_type],solution[:predicate], type)
-            end
+            @endpoint_patterns[endpoint_URL] = @patterns
         end
-        return @patterns          
+        return @endpoint_patterns        
     end
 
         #Generates SHACL shapes corresponding to all the patterns from an endpoint and writes them to a file in turtle format.

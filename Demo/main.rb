@@ -3,11 +3,12 @@ require "./Query_Matching_class.rb"
 
 engine = Engine.new()
 
-endpoint = "https://rdf.metanetx.org/sparql"
-#endpoint = "http://sparql.uniprot.org/sparql"
+endpoint = ["https://rdf.metanetx.org/sparql"]
+
 rdf_index = engine.extract_patterns(endpoint)
-shacl_index_gen = engine.shacl_generator(rdf_index, "metanetx.ttl")
-#shacl_index_gen = engine.shacl_generator(rdf_index, "Uniprot.ttl")
+
+# shacl_index_gen = engine.shacl_generator(rdf_index, "metanetx.ttl")
+
 
 # fake_data_gen = fake_data_generator("https://rdf.metanetx.org/schema/CPLX", "https://rdf.metanetx.org/schema/subu", "https://rdf.metanetx.org/schema/PEPT", "fake_data1.ttl")
 
