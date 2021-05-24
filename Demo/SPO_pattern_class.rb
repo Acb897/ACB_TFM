@@ -253,6 +253,25 @@ END
                         if key == pattern.SPO_Subject
                             counter += 1
                             numero = value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
+                            # if counter == value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
+                            #     if pattern.SPO_Object.nil?
+
+                            #         final_property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t\tsh:minCount 1 ;\nSH\t\t] .\nXX\n"
+                            #         file.write final_property_text
+                            #     else
+                            #         final_property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t\tsh:minCount 1 ;\nSH\t\t\tsh:class <#{pattern.SPO_Object}> ;\nSH\t\t] .\nXX\n"
+                            #         file.write final_property_text
+                            #     end
+                            # else
+                            #     if pattern.SPO_Object.nil?
+
+                            #         property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t\tsh:minCount 1 ;\nSH\t\t] ;\n"
+                            #         file.write property_text
+                            #     else
+                            #         property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t\tsh:minCount 1 ;\nSH\t\t\tsh:class <#{pattern.SPO_Object}> ;\nSH\t\t] ;\n"
+                            #         file.write property_text
+                            #     end
+                            # end
                             if counter == value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
                                 if pattern.SPO_Object.nil?
 
