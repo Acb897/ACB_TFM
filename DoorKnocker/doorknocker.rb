@@ -20,6 +20,11 @@ post '/knockknock' do
     haml :results, :format => :html5
 end
 
+get '/knockknock' do
+    @results = "no, you need to POST the data, not GET the data :-)"
+    haml :results, :format => :html5
+end
+
 def knockknock
   # we should look into how ORCIS does OAuth.
   # https://info.orcid.org/documentation/api-tutorials/api-tutorial-get-and-authenticated-orcid-id/#easy-faq-2537
