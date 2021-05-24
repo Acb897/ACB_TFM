@@ -22,7 +22,24 @@ end
 # @return [report] the report of the validation. Check SHACL::ValidationReport from the SHACL gem.
 def shacl_validator(rdf_graph, shacl_document)
     graph = RDF::Graph.load(rdf_graph)
-    shacl = SHACL.open(shacl_document)
-    report = shacl.execute(graph)
-    return report
+    shacl_shapes = Hash.new
+    File.foreach(shacl_document) {|line|
+        case line
+            when /^EU/
+                @endpoint_url = line.match("^EU\t(.+)\n")[1]
+            when /^SH/
+                content = line.match("^SH\t(.+\n)")[1]
+                if shacl_shapes.include? @endpoint_url
+                    shacl_shapes[@endpoint_url] << content
+                else
+                    shacl_shapes[@endpoint_url] = content
+                end
+            when /^XX/
+                next
+        end
+    }   
+    print shacl_shapes
+    # shacl = SHACL.open(shacl_document)
+    # report = shacl.execute(graph)
+    # return report
 end
