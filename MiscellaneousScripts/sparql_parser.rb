@@ -50,21 +50,21 @@ end
 patterns.each do |triple|  # we're going to create a random string for every variable
   if triple.subject.variable?
     var_symbol = triple.subject.to_sym # covert the variable into a symbol, since that is our hash key
-    triple.subject = variables[var_symbol]  # assign the random string for that symbol
+    triple.subject = variables[var_symbol]  # assign the random URI for that symbol
   end
 
   if triple.predicate.variable?
     var_symbol = triple.predicate.to_sym # covert the variable into a symbol, since that is our hash key
-    triple.predicate = variables[var_symbol]  # assign the random string for that symbol
+    triple.predicate = variables[var_symbol]  # assign the random URI for that symbol
   end
   
   # special case for objects, since they can be literals
   if triple.object.variable?
     var_symbol = triple.object.to_sym # covert the variable into a symbol, since that is our hash key
-    triple.object = variables[var_symbol]  # assign the random string for that symbol
+    triple.object = variables[var_symbol]  # assign the random URI for that symbol
     print_triple(triple)
     
-    triple.object = ""  # assign the random string for that symbol
+    triple.object = "abc"  # assign a nonsense string for that symbol
     print_triple(triple)
     
   end
