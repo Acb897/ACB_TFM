@@ -256,3 +256,263 @@ SH		sh:property [
 SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
 SH		] .
 XX
+XX
+XX
+EU	http://fairdata.systems:7777/sparql
+XX
+SH	<http://rdfs.org/sioc/services#ServicesShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://rdfs.org/sioc/services#Services> ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#services_of> ;
+SH			sh:class <http://xmlns.com/foaf/0.1/Person> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#has_service> ;
+SH			sh:class <http://rdfs.org/sioc/services#Service> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://purl.org/dc/elements/1.1/title> ;
+SH		] .
+XX
+SH	<http://xmlns.com/foaf/0.1/PersonShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://xmlns.com/foaf/0.1/Person> ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#has_services> ;
+SH			sh:class <http://rdfs.org/sioc/services#Services> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://xmlns.com/foaf/0.1/account> ;
+SH			sh:class <http://rdfs.org/sioc/ns#User> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2002/07/owl#sameAs> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://xmlns.com/foaf/0.1/name> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://xmlns.com/foaf/0.1/mbox> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.openlinksw.com/schema/attribution#isDescribedUsing> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://xmlns.com/foaf/0.1/nick> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://xmlns.com/foaf/0.1/mbox_sha1sum> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://xmlns.com/foaf/0.1/openid> ;
+SH		] .
+XX
+SH	<http://rdfs.org/sioc/services#ServiceShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://rdfs.org/sioc/services#Service> ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#service_of> ;
+SH			sh:class <http://rdfs.org/sioc/services#Services> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#service_of> ;
+SH			sh:class <http://rdfs.org/sioc/ns#Space> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#service_of> ;
+SH			sh:class <http://rdfs.org/sioc/ns#User> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#service_endpoint> ;
+SH			sh:class <http://rdfs.org/sioc/services#Service> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#service_endpoint> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#service_protocol> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://purl.org/dc/elements/1.1/identifier> ;
+SH		] .
+XX
+SH	<http://rdfs.org/sioc/ns#SpaceShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://rdfs.org/sioc/ns#Space> ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#has_service> ;
+SH			sh:class <http://rdfs.org/sioc/services#Service> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://purl.org/dc/elements/1.1/title> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#link> ;
+SH		] .
+XX
+SH	<http://rdfs.org/sioc/ns#UserShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://rdfs.org/sioc/ns#User> ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/services#has_service> ;
+SH			sh:class <http://rdfs.org/sioc/services#Service> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#account_of> ;
+SH			sh:class <http://xmlns.com/foaf/0.1/Person> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#link> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#id> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.openlinksw.com/schema/attribution#isDescribedUsing> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#name> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#email_sha1> ;
+SH		] .
+XX
+SH	<http://rdfs.org/sioc/ns#UsergroupShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://rdfs.org/sioc/ns#Usergroup> ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://rdfs.org/sioc/ns#id> ;
+SH		] .
+XX
+SH	<http://semanticscience.org/resource/hostShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/host> ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+SH		] .
+XX
+SH	<http://www.ebi.ac.uk/efo/efo.owl#EFO_0001067Shape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://www.ebi.ac.uk/efo/efo.owl#EFO_0001067> ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/has-participant> ;
+SH			sh:class <http://semanticscience.org/resource/host> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/has-participant> ;
+SH			sh:class <http://semanticscience.org/resource/pathogen> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] .
+XX
+SH	<http://semanticscience.org/resource/measuringShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/measuring> ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/has-participant> ;
+SH			sh:class <http://www.ebi.ac.uk/efo/efo.owl#EFO_0001067> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/is-located-in> ;
+SH			sh:class <http://semanticscience.org/resource/country> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/measured-at> ;
+SH			sh:class <http://semanticscience.org/resource/time-interval> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+SH		] .
+XX
+SH	<http://www.w3.org/2003/01/geo/wgs84_pos#PointShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/is-location-of> ;
+SH			sh:class <http://semanticscience.org/resource/measuring> ;
+SH		] .
+XX
+SH	<http://semanticscience.org/resource/time-intervalShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/time-interval> ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/has-unit> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/has-value> ;
+SH		] .
+XX
+SH	<http://semanticscience.org/resource/pathogenShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/pathogen> ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] .
+XX
+SH	<http://semanticscience.org/resource/countryShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/country> ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+SH		] .
+XX
+XX
+XX
+EU	http://fairdata.systems:7778/sparql
+XX
+SH	<http://semanticscience.org/resource/pathogenShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/pathogen> ;
+SH		sh:property [
+SH			sh:path <http://semanticscience.org/resource/has-identifier> ;
+SH			sh:class <http://semanticscience.org/resource/identifier> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+SH		] .
+XX
+SH	<http://semanticscience.org/resource/identifierShape>
+SH		a sh:NodeShape ;
+SH		sh:targetClass <http://semanticscience.org/resource/identifier> ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+SH		] ;
+SH		sh:property [
+SH			sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+SH		] .
+XX

@@ -15,3 +15,6 @@ perro.ttl
 test.ttl
 Demo/test.rb
 Demo/testing.txt
+Tfm test/output_test.ttl
+Tfm test/main.rb
+Demo/example.sparql
