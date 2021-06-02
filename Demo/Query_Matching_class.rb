@@ -11,29 +11,32 @@ require 'uri'
 # @param output_document [String] the name of the document that will contain the mock data.
 # @return [data] the fake data.
 def fake_data_generator(query_document_location, output_document)
-    @uris_hash = Hash.new
-    @uris_hash.default_proc = proc {|k| k}
-
+    uris_hash = Hash.new
+    uris_hash.default_proc = proc {|k| k}
+    query = String.new
     File.foreach(query_document_location) {|line|
         case line
             when /^PREFIX (\w+:) (<.+)>/i
-                puts "Prefix: #{$1}, full URI: #{$2}"
-                @uris_hash[$1] = $2
+                #puts "Prefix: #{$1}, full URI: #{$2}"
+                uris_hash[$1] = $2
                 
             when /^SELECT|CONSTRUCT|ASK|DESCRIBE/i
+                query = line
                 p line
             when /(^\n|})/
-                puts $1
+                query << line
             else
-                @uris_hash.each { |k, v| 
+                uris_hash.each { |k, v| 
                 line[k] &&= v }
                 #line.gsub!(/(<\S+)/, $1)
                 line.match(/(<\S+)/)
                 line[$1] &&= $1.concat(">")
                 # puts $1.concat(">")
-                puts line
+                query << line
         end
     }
+    query
+
     parsed = SPARQL.parse(query)  # this is a nightmare method, that returns a wide variety of things! LOL!
     rdf_query=''
     if parsed.is_a?(RDF::Query)  # we need to get the RDF:Query object out of the list of things returned from the parse
@@ -52,7 +55,7 @@ def fake_data_generator(query_document_location, output_document)
     end
 
     File.open(output_document, "w") {|file|
-        # now iterate over the patterns again, and bind them to their new value
+        #now iterate over the patterns again, and bind them to their new value
         patterns.each do |triple|  # we're going to create a random string for every variable
             if triple.subject.variable?
                 var_symbol = triple.subject.to_sym # covert the variable into a symbol, since that is our hash key
