@@ -10,7 +10,30 @@ require 'uri'
 # @param object_type [String] the full URI of the rdf:type of the object of the triple.
 # @param output_document [String] the name of the document that will contain the mock data.
 # @return [data] the fake data.
-def fake_data_generator(query, output_document)
+def fake_data_generator(query_document_location, output_document)
+    @uris_hash = Hash.new
+    @uris_hash.default_proc = proc {|k| k}
+
+    File.foreach(query_document_location) {|line|
+        case line
+            when /^PREFIX (\w+:) (<.+)>/i
+                puts "Prefix: #{$1}, full URI: #{$2}"
+                @uris_hash[$1] = $2
+                
+            when /^SELECT|CONSTRUCT|ASK|DESCRIBE/i
+                p line
+            when /(^\n|})/
+                puts $1
+            else
+                @uris_hash.each { |k, v| 
+                line[k] &&= v }
+                #line.gsub!(/(<\S+)/, $1)
+                line.match(/(<\S+)/)
+                line[$1] &&= $1.concat(">")
+                # puts $1.concat(">")
+                puts line
+        end
+    }
     parsed = SPARQL.parse(query)  # this is a nightmare method, that returns a wide variety of things! LOL!
     rdf_query=''
     if parsed.is_a?(RDF::Query)  # we need to get the RDF:Query object out of the list of things returned from the parse
