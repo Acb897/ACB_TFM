@@ -5,38 +5,32 @@ require 'uri'
 
 # Generates mock RDF data to be validated against SHACL shapes.
 #
-# @param subject_type [String] the full URI of the rdf:type of the subject of the triple.
-# @param predicate [String] the full URI of the predicate of the triple.
-# @param object_type [String] the full URI of the rdf:type of the object of the triple.
+# @param query_document_location [String] relative path to the file that contains the query.
 # @param output_document [String] the name of the document that will contain the mock data.
 # @return [data] the fake data.
 def fake_data_generator(query_document_location, output_document)
     uris_hash = Hash.new
     uris_hash.default_proc = proc {|k| k}
-    query = String.new
     File.foreach(query_document_location) {|line|
         case line
-            when /^PREFIX (\w+:) (<.+)>/i
-                #puts "Prefix: #{$1}, full URI: #{$2}"
+            when /^PREFIX (\w+:) (<.+)>/i #if the line starts with PREFIX, find the prefix and its full URI and store them in a hash
                 uris_hash[$1] = $2
                 
-            when /^SELECT|CONSTRUCT|ASK|DESCRIBE/i
+            when /^SELECT|CONSTRUCT|ASK|DESCRIBE/i #This line corresponds to the first line of the final query
                 query = line
-                p line
             when /(^\n|})/
                 query << line
-            else
+            else 
                 uris_hash.each { |k, v| 
-                line[k] &&= v }
-                #line.gsub!(/(<\S+)/, $1)
+                line[k] &&= v } #changes all occurances of a prefix with the full URI
                 line.match(/(<\S+)/)
                 line[$1] &&= $1.concat(">")
-                # puts $1.concat(">")
+                line.gsub!(/\ba\b/, "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>") #changes "a" with the whole URI of rdf:type
                 query << line
         end
     }
-    query
-
+    puts query
+    
     parsed = SPARQL.parse(query)  # this is a nightmare method, that returns a wide variety of things! LOL!
     rdf_query=''
     if parsed.is_a?(RDF::Query)  # we need to get the RDF:Query object out of the list of things returned from the parse
