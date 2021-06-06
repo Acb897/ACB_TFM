@@ -1,0 +1,22 @@
+%html
+  %body  
+
+    - @req.keys.each do |k|
+      %strong
+        REQUEST
+        %a{href: "https://orcid.org/#{k.to_s}"} k.to_s
+      %br
+      %br
+      %br
+    
+      %strong QUERY:
+      %br
+      %br
+      = @req[k]
+      %br
+      %br
+      
+      %a{:href=> "./accept/#{k}"} Accept
+      %br
+      %br
+      %a{:href=> "./reject/#{k}"} Reject

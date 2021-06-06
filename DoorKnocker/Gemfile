@@ -16,3 +16,4 @@ gem "uuidtools"
 gem 'nokogiri'
 gem 'equivalent-xml'
 gem 'rerun'
+gem 'fileutils'

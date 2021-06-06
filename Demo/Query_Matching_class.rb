@@ -9,27 +9,30 @@ require 'uri'
 # @param output_document [String] the name of the document that will contain the mock data.
 # @return [data] the fake data.
 def fake_data_generator(query_document_location, output_document)
-    uris_hash = Hash.new
-    uris_hash.default_proc = proc {|k| k}
-    File.foreach(query_document_location) {|line|
-        case line
-            when /^PREFIX (\w+:) (<.+)>/i #if the line starts with PREFIX, find the prefix and its full URI and store them in a hash
-                uris_hash[$1] = $2
-                
-            when /^SELECT|CONSTRUCT|ASK|DESCRIBE/i #This line corresponds to the first line of the final query
-                query = line
-            when /(^\n|})/
-                query << line
-            else 
-                uris_hash.each { |k, v| 
-                line[k] &&= v } #changes all occurances of a prefix with the full URI
-                line.match(/(<\S+)/)
-                line[$1] &&= $1.concat(">")
-                line.gsub!(/\ba\b/, "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>") #changes "a" with the whole URI of rdf:type
-                query << line
-        end
-    }
-    puts query
+    ############
+    #  Removed this, as it is not necessary
+    ############
+    #uris_hash = Hash.new
+    #uris_hash.default_proc = proc {|k| k}
+    #File.foreach(query_document_location) {|line|
+    #    case line
+    #        when /^PREFIX (\w+:) (<.+)>/i #if the line starts with PREFIX, find the prefix and its full URI and store them in a hash
+    #            uris_hash[$1] = $2
+    #            
+    #        when /^SELECT|CONSTRUCT|ASK|DESCRIBE/i #This line corresponds to the first line of the final query
+    #            query = line
+    #        when /(^\n|})/
+    #            query << line
+    #        else 
+    #            uris_hash.each { |k, v| 
+    #            line[k] &&= v } #changes all occurances of a prefix with the full URI
+    #            line.match(/(<\S+)/)
+    #            line[$1] &&= $1.concat(">")
+    #            line.gsub!(/\ba\b/, "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>") #changes "a" with the whole URI of rdf:type
+    #            query << line
+    #    end
+    #}
+    $stderr.puts query
     
     parsed = SPARQL.parse(query)  # this is a nightmare method, that returns a wide variety of things! LOL!
     rdf_query=''
@@ -65,6 +68,12 @@ def fake_data_generator(query_document_location, output_document)
             if triple.object.variable?
                 var_symbol = triple.object.to_sym # covert the variable into a symbol, since that is our hash key
                 triple.object = variables[var_symbol]  # assign the random string for that symbol
+                file.write triple.to_rdf
+                file.write "\n"
+                ########
+                #  What will you do with triples that have a literal as their value, rather than a <URI>?
+                ########
+            else  # this ensures that it is written even if the object is not a variable
                 file.write triple.to_rdf
                 file.write "\n"
             end
