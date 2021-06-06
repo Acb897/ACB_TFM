@@ -1,0 +1,5 @@
+<http://fakedata.org/ktbgdymmva> <http://semanticscience.org/resource/has-participant> <http://fakedata.org/uqgkupcrxv> .
+<http://fakedata.org/uqgkupcrxv> <http://semanticscience.org/resource/has-participant> <http://fakedata.org/izeozcsldv> .
+<http://fakedata.org/uqgkupcrxv> <http://semanticscience.org/resource/has-participant> <http://fakedata.org/mnralbwfvj> .
+<http://fakedata.org/izeozcsldv> <http://www.w3.org/2000/01/rdf-schema#label> <http://fakedata.org/kcnfhkgurz> .
+<http://fakedata.org/izeozcsldv> <http://semanticscience.org/resource/has-identifier> <http://fakedata.org/fxlsojbtvu> .

@@ -1,2 +1,0 @@
-https://sparql.uniprot.org/sparql
-/sparql/?query=PREFIX+void%3A%3Chttp%3A%2F%2Frdfs.org%2Fns%2Fvoid%23%3E%0ASELECT%0A++DISTINCT+%3Ftype%0AFROM+%3Chttps%3A%2F%2Fsparql.uniprot.org%2F.well-known%2Fvoid%3E%0AWHERE%0A%7B%0A++%5B%5D+void%3Aclass+%3Ftype+.%0A%7D&limit=25
