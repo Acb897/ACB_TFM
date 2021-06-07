@@ -1,0 +1,15 @@
+%html
+  %body  
+
+    -@queue.each do |k|
+      %strong
+        = "REQUEST #{k.to_s}"
+      %br
+      %br
+      %a{:href=> "./review/#{k}"} Review
+      %br
+      %a{:href=> "./accept/#{k}"} Accept
+      %br
+      %a{:href=> "./reject/#{k}"} Reject
+
+  

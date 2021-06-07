@@ -1,0 +1,3 @@
+_:ABC a <https://rdf.metanetx.org/schema/REAC> . 
+_:ABC <https://rdf.metanetx.org/schema/reacXrefa> _:123 . 
+_:123 a <http://swisslipids.org/rdf#DbReference> .

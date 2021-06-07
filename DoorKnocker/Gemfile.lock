@@ -17,6 +17,7 @@ GEM
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     ffi (1.15.1)
+    fileutils (1.5.0)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
@@ -99,6 +100,7 @@ PLATFORMS
 
 DEPENDENCIES
   equivalent-xml
+  fileutils
   haml
   json
   nokogiri
