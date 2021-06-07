@@ -1,14 +1,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 
-<https://rdf.metanetx.org/schema/CPLXShape>
+<http://semanticscience.org/resource/pathogenShape>
 	a sh:NodeShape ;
-	sh:targetClass <https://rdf.metanetx.org/schema/CPLX> ;
+	sh:targetClass <http://semanticscience.org/resource/pathogen> ;
 	sh:property [
-		sh:path <https://rdf.metanetx.org/schema/subu> ;
-		sh:class <https://rdf.metanetx.org/schema/PEPT> ;
-	] ;
-	sh:property [
-		sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+		sh:path <http://semanticscience.org/resource/has-identifier> ;
+		sh:class <http://semanticscience.org/resource/identifier> ;
 	] ;
 	sh:property [
 		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
