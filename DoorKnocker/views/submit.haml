@@ -1,0 +1,25 @@
+%html
+  %body  
+
+    %strong
+      SUBMIT NEW
+    %br
+    %br
+    %br
+  
+    %form{action: "/submit", method: "POST"}
+      %br
+      %br
+      Query:
+      %textarea{name: "query"}
+      %br
+      %br
+      ORCiD:
+      %input{type: "text", name: "orcid"}
+      %br
+      %br
+      token:
+      %input{type: "text", name: "token"}
+      %br
+      %br
+      %input{type: "Submit", name: "Submit it"}
