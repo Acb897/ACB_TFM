@@ -1,6 +1,16 @@
 version: "3"
 services:
 
+  doorknocker:
+    image: markw/doorknocker:latest
+    container_name: doorknocker
+    ports:
+      - 4567:4567
+    environment:
+      SPARQL: ${SPARQL}
+    volumes:
+      - /tmp:/tmp
+
   tpf_server:
     image: markw/tpfserver:latest
     container_name: tpfserver
@@ -16,7 +26,6 @@ services:
       ENDPOINT_SOURCE: ${ENDPOINT_SOURCE}
       ENDPOINT_TARGET: ${ENDPOINT_TARGET}
       CREDENTIALS: ${CREDENTIALS}
-      QUERY_FILE_PATH: /app/queries/query
       QUERY_PATH: ${QUERY_PATH}
     volumes:
       - ${QUERY_PATH}:/app/queries/

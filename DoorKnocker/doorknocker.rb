@@ -12,8 +12,10 @@ require 'fileutils'
 require 'open3'
 
 #set :public_folder, '/front-end/public'
-URL = "http://localhost:4567/"
-SPQL = "http://fairdata.systems:7777/sparql"
+
+
+SPQL = ENV['SPARQL']
+TRIPLE_HARVESTER = "http://triple_harvester:8000/"
 
 
 get '/' do
@@ -150,24 +152,15 @@ end
 
 def accept(id)
   $stderr.puts "BEGINNING TE WRITE"
-  write_docker_compose()
-  $stderr.puts "BEGINNING THE ENV WRITE"
-  File.open("/tmp/.env", "w") do |f|
-    f.puts "SPARQL=#{SPQL}"
-    f.puts "ENDPOINT_SOURCE=http://tpfserver:3000/temp"
-    f.puts "ENDPOINT_TARGET=http://fairdata.systems:8890/DAV/home/LDP/Hackathon/"
-    f.puts "CREDENTIALS=ldp:ldp"
-    f.puts "QUERY_PATH=/tmp/query#{id}/"
-  end
+  #write_docker_compose()
+  write_env(id)
+  #write_launcher()
   $stderr.puts "BEGINNING THE CDIR"
   Dir.chdir('/tmp') do
-#    $stderr.puts RestClient.get("http://localhost:#{@port}/temp")
     $stderr.puts "BEGINNING THE DCOMP"
-    stdout, stderr, status = Open3.capture3("docker-compose up -d")
-    @errors = stderr
-    $stderr.puts stdout
-    $stderr.puts stderr
-    $stderr.puts status
+#    stdout, stderr, status = Open3.capture3("bash launcher.sh ")
+    out = RestClient.get(TRIPLE_HARVESTER)
+    $stderr.puts out
   end
   @accepted = "Query #{id} is now being processed"
     
@@ -177,35 +170,58 @@ def validate(orcid, token)
     return true
 end
 
-def write_docker_compose
-  compose =<<END
-version: "3"
-services:
 
-  tpf_server:
-    image: markw/tpfserver:latest
-    container_name: tpfserver
-    environment:
-      SPARQL: ${SPARQL}
-
-  triple_harvester:
-    image: markw/triple_harvester:latest
-    container_name: triple_harvester
-    environment:
-      ENDPOINT_SOURCE: ${ENDPOINT_SOURCE}
-      ENDPOINT_TARGET: ${ENDPOINT_TARGET}
-      CREDENTIALS: ${CREDENTIALS}
-      QUERY_FILE_PATH: /app/queries/query
-      QUERY_PATH: ${QUERY_PATH}
-    volumes:
-      - ${QUERY_PATH}:/app/queries/
-    depends_on:
-      - tpf_server
-
-END
-
-  File.open("/tmp/docker-compose.yml", "w") do |f|
-    f.puts compose
-  end
-    
+def write_env(id)
+  $stderr.puts "BEGINNING THE ENV WRITE"
+  File.open("/tmp/.env", "w") do |f|
+    f.puts "SPARQL=#{SPQL}"
+    f.puts "ENDPOINT_SOURCE=http://tpfserver:3000/temp"
+    f.puts "ENDPOINT_TARGET=http://fairdata.systems:8890/DAV/home/LDP/Hackathon/"
+    f.puts "CREDENTIALS=ldp:ldp"
+    f.puts "QUERY_PATH=/tmp/query#{id}/"
+  end 
 end
+
+
+# DEPRECATED in favour of HTTP call
+###############################
+#def write_launcher
+#  $stderr.puts "BEGINNING THE ENV WRITE"
+#  File.open("/tmp/launcher.sh", "w") do |f|
+#    f.puts "#!/bin/bash"
+#    f.puts "echo $PATH > pathinfo"
+#    f.puts "/usr/local/bin/docker-compose up -d"
+#  end     
+#end
+#
+#def write_docker_compose
+#  compose =<<END
+#version: "3"
+#services:
+#
+#  tpf_server:
+#    image: markw/tpfserver:latest
+#    container_name: tpfserver
+#    environment:
+#      SPARQL: ${SPARQL}
+#
+#  triple_harvester:
+#    image: markw/triple_harvester:latest
+#    container_name: triple_harvester
+#    environment:
+#      ENDPOINT_SOURCE: ${ENDPOINT_SOURCE}
+#      ENDPOINT_TARGET: ${ENDPOINT_TARGET}
+#      CREDENTIALS: ${CREDENTIALS}
+#      QUERY_FILE_PATH: /app/queries/query
+#      QUERY_PATH: ${QUERY_PATH}
+#    volumes:
+#      - ${QUERY_PATH}:/app/queries/
+#    depends_on:
+#      - tpf_server
+#
+#END
+#
+#  File.open("/tmp/docker-compose.yml", "w") do |f|
+#    f.puts compose
+#  end
+#end

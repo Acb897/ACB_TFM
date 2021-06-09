@@ -6,7 +6,7 @@ RUN chmod a+r /etc/resolv.conf
 RUN mkdir /knocker
 WORKDIR /knocker
 RUN gem update --system
-RUN gem install bundler:2.1.4
+RUN gem install bundler:2.2.19
 COPY . /knocker/
 RUN bundle install
 CMD ["ruby", "doorknocker.rb", "-o", "0.0.0.0"]
