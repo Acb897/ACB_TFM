@@ -8,7 +8,7 @@ require 'uri'
 # @param query_document_location [String] relative path to the file that contains the query.
 # @param output_document [String] the name of the document that will contain the mock data.
 # @return [data] the fake data.
-def fake_data_generator(query_document_location, output_document)
+def fake_data_generator(query, output_document)
     ############
     #  Removed this, as it is not necessary
     ############
@@ -32,9 +32,10 @@ def fake_data_generator(query_document_location, output_document)
     #            query << line
     #    end
     #}
-    $stderr.puts query
     
+    $stderr.puts query
     parsed = SPARQL.parse(query)  # this is a nightmare method, that returns a wide variety of things! LOL!
+    
     rdf_query=''
     if parsed.is_a?(RDF::Query)  # we need to get the RDF:Query object out of the list of things returned from the parse
         rdf_query = parsed
