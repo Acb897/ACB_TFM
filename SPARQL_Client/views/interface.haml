@@ -1,0 +1,26 @@
+%html
+  %body  
+
+    %strong
+      SUBMIT NEW QUERY
+    %br
+    %br
+    %br
+  
+    %form{action: "/search", method: "POST"}
+      %br
+      %br
+      Query:
+      %br
+      %textarea{name: "query", cols: "60", rows: "20"}
+      %br
+      %br
+      ORCiD:
+      %input{type: "text", name: "orcid"}
+      %br
+      %br
+      token:
+      %input{type: "text", name: "token"}
+      %br
+      %br
+      %input{type: "Submit", name: "Submit it", value: "Search for Matching Endpoints"}

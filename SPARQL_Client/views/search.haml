@@ -1,0 +1,25 @@
+%html
+  %body
+    - if @errors
+      %strong
+        ERRORS
+        = @errors
+    - else
+      %strong Your query Matches
+      %br
+      %br
+  
+      %form{action: "/submit", method: "POST"}
+        - @discovered.each do |uri, title|
+          %br
+          %input{type: :checkbox, name: "location[]", value: uri}
+            = title
+          %br
+          %br
+        %input{type: "hidden", name: "query", value: @query}
+        %input{type: "hidden", name: "orcid", value: @orcid}
+        %input{type: "hidden", name: "token", value: @token}
+        %input{type: "submit", value: "Queue query with these endpoints"}
+        
+
+  

@@ -148,7 +148,7 @@ def knockknock(json = nil)
     File.open("/tmp/#{id}/orcid", "w") {|f| f.write(orcid)}
 
     @results["valid"] = "VALIDATED: User has been validated.  Query has been queued for review"
-    @results["id"] = "query#{stamp}"
+    @results["id"] = "query#{id}"
   else
     @results["valid"] = "INVALID: User #{orcid} has not been validated.  Query has been discarded"
     @results["id"] = nil

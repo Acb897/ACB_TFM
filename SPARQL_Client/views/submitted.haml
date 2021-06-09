@@ -1,0 +1,19 @@
+%html
+  %body
+
+    %strong
+      %br
+      %br
+      Submitted query:
+    %pre
+      =@query
+    %br
+    %br
+    %strong Responses
+    - @loc_responses.each do |loc, mess|
+      %br
+      %strong loc
+      = mess
+    
+
+  
