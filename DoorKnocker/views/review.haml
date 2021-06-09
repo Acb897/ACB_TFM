@@ -1,6 +1,7 @@
 %html
   %body  
-
+    %strong= @error
+    
     - @req.keys.each do |k|
       %strong
         REQUEST
@@ -12,11 +13,12 @@
       %strong QUERY:
       %br
       %br
-      = @req[k]
+      %pre
+        = @req[k][1]
       %br
       %br
       
-      %a{:href=> "./accept/#{k}"} Accept
+      %a{:href=> "../accept/#{@req[k][0]}"} Accept
       %br
       %br
-      %a{:href=> "./reject/#{k}"} Reject
+      %a{:href=> "../reject/#{@req[k][0]}"} Reject

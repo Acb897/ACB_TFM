@@ -3,8 +3,8 @@ require 'uri'
 
 
 def print_triple(triple)
-  puts triple.to_rdf
-  puts "\n\n"
+#  puts triple.to_rdf
+#   puts "\n\n"
 end
 
 
@@ -29,11 +29,13 @@ END
 
 parsed = SPARQL.parse(query)  # this is a nightmare method, that returns a wide variety of things! LOL!
 
+#RDF::Query::Pattern.new(rdf_query.patterns.first.subject, rdf_query.patterns.first.predicate, rdf_query.patterns.first.object, {optional: true}).to_s
+
 rdf_query=''
 if parsed.is_a?(RDF::Query)  # we need to get the RDF:Query object out of the list of things returned from the parse
   rdf_query = parsed
 else
-  parsed.each {|c| rdf_query = c if c.is_a?(RDF::Query)  }
+  parsed.each {|c| puts c.to_s; rdf_query = c if c.is_a?(RDF::Query)  }
 end
 
 
@@ -66,7 +68,8 @@ patterns.each do |triple|  # we're going to create a random string for every var
     
     triple.object = "abc"  # assign a nonsense string for that symbol
     print_triple(triple)
-    
+  else
+    print_triple(triple)
   end
 
 end
