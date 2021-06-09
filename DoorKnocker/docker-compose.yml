@@ -18,14 +18,16 @@ services:
       - ${EXPOSE_PORT}:3000
     environment:
       SPARQL: ${SPARQL}
+    volumes:
+      - /tmp:/tmp
 
   triple_harvester:
-    image: markw/triple_harvester:latest
-    container_name: triple_harvester
+    image: markw/triple-harvester:latest
+    container_name: triple-harvester
     environment:
       ENDPOINT_SOURCE: ${ENDPOINT_SOURCE}
       ENDPOINT_TARGET: ${ENDPOINT_TARGET}
       CREDENTIALS: ${CREDENTIALS}
       QUERY_PATH: ${QUERY_PATH}
     volumes:
-      - ${QUERY_PATH}:/app/queries/
+      - /tmp:/tmp

@@ -2,7 +2,7 @@
   %body  
 
     %strong
-      SUBMIT NEW
+      SUBMIT NEW QUERY
     %br
     %br
     %br
@@ -11,7 +11,8 @@
       %br
       %br
       Query:
-      %textarea{name: "query"}
+      %br
+      %textarea{name: "query", cols: "60", rows: "20"}
       %br
       %br
       ORCiD:
@@ -22,4 +23,4 @@
       %input{type: "text", name: "token"}
       %br
       %br
-      %input{type: "Submit", name: "Submit it"}
+      %input{type: "Submit", name: "Submit it", value: "Submit query to queue for review"}
