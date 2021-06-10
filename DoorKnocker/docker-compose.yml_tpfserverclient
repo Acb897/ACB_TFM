@@ -1,17 +1,6 @@
 version: "3"
 services:
 
-  doorknocker:
-    image: markw/doorknocker:latest
-    container_name: doorknocker
-    ports:
-      - 4567:4567
-    environment:
-      SPARQL: ${SPARQL}
-    restart: always
-    volumes:
-      - /tmp:/tmp
-
   tpf_server:
     image: markw/tpfserver:latest
     container_name: tpfserver
@@ -19,18 +8,15 @@ services:
       - ${EXPOSE_PORT}:3000
     environment:
       SPARQL: ${SPARQL}
-    restart: always
-    volumes:
-      - /tmp:/tmp
 
   triple_harvester:
-    image: markw/triple-harvester:latest
-    container_name: triple-harvester
+    image: markw/triple_harvester:latest
+    container_name: triple_harvester
     environment:
       ENDPOINT_SOURCE: ${ENDPOINT_SOURCE}
       ENDPOINT_TARGET: ${ENDPOINT_TARGET}
       CREDENTIALS: ${CREDENTIALS}
+      QUERY_FILE_PATH: /app/queries/query
       QUERY_PATH: ${QUERY_PATH}
-    restart: always
     volumes:
-      - /tmp:/tmp
+      - ${QUERY_PATH}:/app/queries/
