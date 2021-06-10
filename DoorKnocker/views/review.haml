@@ -5,7 +5,8 @@
     - @req.keys.each do |k|
       %strong
         REQUEST
-        %a{href: "https://orcid.org/#{k.to_s}"} k.to_s
+        %a{href: "https://orcid.org/#{k.to_s}"}
+          = k.to_s
       %br
       %br
       %br
