@@ -1,0 +1,29 @@
+%html
+  %body
+    %strong Currently Outstanding Sessions:
+    - @results.keys.each do |session|
+      - query, statuss = @results[session]
+      %br
+      %br
+      
+      Session ID:
+      = session
+      %br
+      %strong Query
+      %pre
+        = query
+      %br
+      %br
+      %strong Endpoint Status'
+      %br
+      - statuss.each do |stat|
+        = stat
+        %br
+      %br
+      %br
+      %a{href: "/resolve/#{@orcid}/#{session}"} Resolve This Query Now?
+      %br
+      %hr
+    
+
+  
