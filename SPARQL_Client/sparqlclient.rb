@@ -40,6 +40,8 @@ def submit
   token = params[:token]
   orcid = params[:orcid]
   
+  trans = SPARQLTransform.new({sparql: @query})
+  @query = trans.transform
   @loc_responses= Hash.new
   locations.each do |loc|
     data = {"orcid" => orcid, "token" => token, "query" => @query}.to_json
@@ -49,7 +51,11 @@ def submit
                             headers: {"Content-Type" => "application/json"}
                            )
     $stderr.puts res
-    @loc_responses[loc] = res
+    res.to_s =~ /(\/status\/query\d+\.\d+)/
+    status = $1
+    loc.gsub!('/knockknock', "")
+    loc += status
+    @loc_responses[loc] = "Click here to monitor status:  <a href='#{loc}'>#{loc}</a><br><br>"
   end 
 end
 
