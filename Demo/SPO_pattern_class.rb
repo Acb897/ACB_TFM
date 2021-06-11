@@ -158,7 +158,7 @@ END
             WHERE {
                 ?object a <#{type}>.
                 ?subject ?predicate ?object . 
-                ?subject a ?subject_type.
+                OPTIONAL{?subject a ?subject_type}.
             } limit 10
 END
             $stderr.puts "query is:\n#{query}\n\n"
