@@ -1,14 +1,18 @@
 %html
-
-  %h1 You have two options:
+  %body
+    :css
+      body {background-color: pink} 
   
-  %h3
-    POST
-    %pre {"orcid": "0000-...", "query": "SELECT....", "token": "your token"}
-    to /knockknock
   
-  %h1  OR
-  
-  %h3
-    Submit using the
-    %a{href: "/submit"} web interface
+    %h1 You have two options:
+    
+    %h3
+      POST
+      %pre {"orcid": "0000-...", "query": "SELECT....", "token": "your token"}
+      to /knockknock
+    
+    %h1  OR
+    
+    %h3
+      Submit using the
+      %a{href: "/submit"} web interface

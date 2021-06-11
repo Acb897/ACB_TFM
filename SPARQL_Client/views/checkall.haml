@@ -1,5 +1,8 @@
 %html
   %body
+    :css
+      body {background-color: palegreen} 
+
     %strong Currently Outstanding Sessions:
     - @results.keys.each do |session|
       - query, statuss = @results[session]
