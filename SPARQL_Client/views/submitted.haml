@@ -6,7 +6,7 @@
       %br
       Submitted query:
     %pre
-      =@query
+      = Rack::Utils.escape_html @origquery
     %br
     %br
     %strong Responses

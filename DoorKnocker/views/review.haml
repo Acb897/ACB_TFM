@@ -15,7 +15,7 @@
       %br
       %br
       %pre
-        = @req[k][1]
+        = Rack::Utils.escape_html  @req[k][1]
       %br
       %br
       

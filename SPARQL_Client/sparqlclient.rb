@@ -56,15 +56,14 @@ def resolve(orcid, sessionid)
   $stderr.puts @query
   $stderr.puts  "#{myfolder}/query"
   @result = ""
-  c = SPARQL::Client.new("http://ldp.cbgp.upm.es:8890/sparql")
+  c = SPARQL::Client.new("http://fairdata.systems:8890/sparql")
   results = c.query(@query)
-  results.each do |solution|
-    solution.each_binding do |name, value|
-      @result += "#{name} = #{value}<br/>"
-    end
-  end
-  
-  $stderr.puts c.query(@query)
+  #results.each do |solution|
+  #  solution.each_binding do |name, value|
+  #    @result += "#{name} = #{value}<br/>"
+  #  end
+  #end
+  @result = results.to_html
 
 end
 
@@ -101,11 +100,11 @@ end
 
 def submit
   locations = params[:location]
-  @query = params[:query]
+  @origquery = params[:query]
   token = params[:token]
   @orcid = params[:orcid]
   
-  trans = SPARQLTransform.new({sparql: @query})
+  trans = SPARQLTransform.new({sparql: @origquery})
   @query = trans.transform
   @loc_responses= Hash.new
   locations.each do |loc|
@@ -122,7 +121,7 @@ def submit
     loc += status                 # and replace it with the 'status' API call for that submission
     @loc_responses[loc] = "Click here to monitor status:  <a href='#{loc}'>#{loc}</a><br><br>"
     
-    write_to_cache(@query, @orcid,loc)
+    write_to_cache(@origquery, @orcid,loc)
   
   end 
 end
@@ -144,8 +143,8 @@ def search
 end
 
 def search_match(query)
-  @discovered['http://ldp.cbgp.upm.es:4567/knockknock'] = "CBGP private data endpoint"
-  @discovered['http://fairdata.systems:4567/knockknock'] = "FAIR Data Systems private data endpoint"
+  @discovered['http://ldp.cbgp.upm.es:4567/knockknock'] = "CBGP Endpoint about plant pathogen interactions"
+  @discovered['http://fairdata.systems:4567/knockknock'] = "FAIR Data Systems endpoint about pathogen ecology"
 end
 
 def write_to_cache(query,orcid,loc)

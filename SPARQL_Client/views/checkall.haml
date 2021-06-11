@@ -11,7 +11,7 @@
       %br
       %strong Query
       %pre
-        = query
+        = Rack::Utils.escape_html query
       %br
       %br
       %strong Endpoint Status'
