@@ -1,0 +1,15 @@
+PREFIX so: <http://purl.org/ontology/symbolic-music/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sio: <http://semanticscience.org/resource/>
+
+select ?host ?patho ?name ?lsid where {
+  ?s a sio:measuring .
+  ?s sio:has-participant ?part .
+  ?part sio:has-participant ?patho .
+  ?part sio:has-participant ?host .
+  ?host a sio:host .
+  ?patho a sio:pathogen .
+  ?patho rdfs:label ?name .
+  ?patho  sio:has-identifier ?lsid .
+}
+

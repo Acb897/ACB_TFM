@@ -1,0 +1,12 @@
+%html
+  %body
+    :css
+      body {background-color: palegreen} 
+
+    %strong QUERY
+    %pre
+      = Rack::Utils.escape_html @query
+    %br
+    %strong SOLUTIONS
+    %pre
+      = @result

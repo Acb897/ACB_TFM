@@ -1,12 +1,14 @@
 %html
   %body
+    :css
+      body {background-color: palegreen} 
 
     %strong
       %br
       %br
       Submitted query:
     %pre
-      =@query
+      = Rack::Utils.escape_html @origquery
     %br
     %br
     %strong Responses
@@ -15,5 +17,11 @@
       %strong Successfully queued
       = mess
     
+    %br
+    %br
+    %strong
+      %a{href: "/checkall/#{@orcid}"} Check all my open queues
+      %br
+      %a{href: "/"} Submit another query
 
   
