@@ -3,9 +3,9 @@ require "./Query_Matching_class.rb"
 
 engine = Engine.new()
 
-endpoint = ["https://rdf.metanetx.org/sparql", "http://fairdata.systems:7777/sparql", "http://fairdata.systems:7778/sparql"]
+endpoints = ["https://rdf.metanetx.org/sparql", "http://fairdata.systems:7777/sparql", "http://fairdata.systems:7778/sparql"]
 
-rdf_index = engine.extract_patterns(endpoint)
+rdf_index = engine.extract_patterns(endpoints)
 shacl_index_gen = engine.shacl_generator(rdf_index, "index.txt", "create")
 
 
@@ -32,5 +32,5 @@ puts "Generating mock RDF data to validate"
 fake_data_gen = fake_data_generator(query, "RDF_data.ttl")
 # fake_data_gen = fake_data_generator("example.sparql", "RDF_data.ttl")
 
-validator = shacl_validator("RDF_data.ttl", "index.txt")
-p validator
+responsive_endpoints = shacl_validator("RDF_data.ttl", "index.txt")
+p responsive_endpoints
