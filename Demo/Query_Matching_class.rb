@@ -5,9 +5,9 @@ require 'uri'
 
 # Generates mock RDF data to be validated against SHACL shapes.
 #
-# @param query_document_location [String] relative path to the file that contains the query.
+# @param query [String] the query.
 # @param output_document [String] the name of the document that will contain the mock data.
-# @return [data] the fake data.
+# @return [file] the fake data in turtle format.
 def fake_data_generator(query, output_document)
     ############
     #  Removed this, as it is not necessary
@@ -87,7 +87,7 @@ end
 #
 # @param rdf_graph [String] the name of the document that contains the mock RDF data.
 # @param shacl_document [String] the name of the document with the SHACL shapes.
-# @return [report] the report of the validation. Check SHACL::ValidationReport from the SHACL gem.
+# @return [responsive_endpoints] an array containing the responsive endpoints' URLs.
 def shacl_validator(rdf_graph, shacl_document)
     shacl_shapes = Hash.new
     responsive_endpoints = Array.new
