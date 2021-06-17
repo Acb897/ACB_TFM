@@ -12,3 +12,4 @@ select ?host ?patho ?name ?lsid where {
   ?patho rdfs:label ?name .
   ?patho sio:has-identifier ?lsid .
 }
+asd
