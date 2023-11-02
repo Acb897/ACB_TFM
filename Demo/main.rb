@@ -11,7 +11,7 @@ endpoints = ["https://rdf.metanetx.org/sparql", "http://fairdata.systems:7777/sp
 
 # The following lines perform the indexing and transformation to SHACL
 rdf_index = engine.extract_patterns(endpoints)
-shacl_index_gen = engine.shacl_generator(rdf_index, "index.txt", "create")
+shacl_index_gen = engine.shacl_generator(rdf_index, "index.ttl", "create")
 
 
 # ======================================================
