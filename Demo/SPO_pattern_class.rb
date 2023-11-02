@@ -234,7 +234,7 @@ END
         File.open(output_file, file_mode) {|file|
             patterns_hash.each do |url, patterns|
                 new_patterns_hash = Hash.new
-                file.write "XX\nXX\nEU\t#{url}\nXX\n"
+                file.write "#{url}\n\n"
                 patterns.each do |key, value|
                     value.each do |pattern|
                         if new_patterns_hash.include? pattern.SPO_Subject.to_s
@@ -247,7 +247,7 @@ END
                 new_patterns_hash.each do |key, value|
                     counter = 0
                     puts "Processing #{key}'s shape"
-                    shape_intro = "SH\t<#{key}Shape>\nSH\t\ta sh:NodeShape ;\nSH\t\tsh:targetClass <#{key}> ;\n"
+                    shape_intro = "<#{key}Shape>\n\ta sh:NodeShape ;\n\tsh:targetClass <#{key}> ;\n"
                     file.write shape_intro
                     value.each do |pattern|
                         if key == pattern.SPO_Subject
@@ -256,19 +256,19 @@ END
                             if counter == value.select{|a| a.SPO_Subject == pattern.SPO_Subject}.length()
                                 if pattern.SPO_Object.nil?
 
-                                    final_property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t] .\nXX\n"
+                                    final_property_text = "\tsh:property [\nt\tsh:path <#{pattern.SPO_Predicate}> ;\n\t] .\n"
                                     file.write final_property_text
                                 else
-                                    final_property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t\tsh:class <#{pattern.SPO_Object}> ;\nSH\t\t] .\nXX\n"
+                                    final_property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] .\n"
                                     file.write final_property_text
                                 end
                             else
                                 if pattern.SPO_Object.nil?
 
-                                    property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t] ;\n"
+                                    property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t] ;\n"
                                     file.write property_text
                                 else
-                                    property_text = "SH\t\tsh:property [\nSH\t\t\tsh:path <#{pattern.SPO_Predicate}> ;\nSH\t\t\tsh:class <#{pattern.SPO_Object}> ;\nSH\t\t] ;\n"
+                                    property_text = "\tsh:property [\n\t\tsh:path <#{pattern.SPO_Predicate}> ;\n\t\tsh:class <#{pattern.SPO_Object}> ;\n\t] ;\n"
                                     file.write property_text
                                 end
                             end
