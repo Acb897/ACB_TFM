@@ -6,7 +6,7 @@ After cloning the repository, go to the [Demo](/Demo) directory. Inside, you wil
 #### First section: Indexing
 Here, you can change the endpoints to be automatically explored and indexed, by adding or removing them from the "endpoints" array.
 #### Second section: Querying
-Here you can change the query you are interested in finding endpoints that can answer it. Simply change the query to any SPARQL query, but **do not** remove the first line (<<END) and the last line (END) of the query. 
+Here you can change the query you are interested in finding endpoints that can answer it. Simply change the query to any SPARQL query, but **DO NOT** remove the first line (<<END) and the last line (END) of the query. 
 #### Third section: Source Selection
 There is not much to customise here.
 
